@@ -14,10 +14,11 @@ The project uses files found in the .../factbook/geos/ folder with the "print_" 
 For example US data is taken from the file print_us.html 
 All the "print" files are put in a separate folder and parsed from there.
 
-## Requirements
+## Build Tools
 
 - Java 1.8
-- Built with Intellij IDEA but should work with any IDE
+- Intellij IDEA
+- Gradle
 
 ---
 
