@@ -1,37 +1,51 @@
 package FactbookParser;
 
-import java.util.ArrayList;
-import java.util.List;
+
 import java.io.*;
 import java.io.IOException;
 
 import org.jsoup.*;
 import org.jsoup.nodes.*;
 import org.jsoup.select.*;
-import java.util.Hashtable;
 
+/**
+ * Country txt creator.
+ *
+ * <P>Parses print_[countryname].html files from the CIA Factbook into txt files.
+ *
+ * @author Aleksandr Strizhevskiy
+ * @version 1.0
+ */
 public class FBParser {
 
     public static void main(String[] args) throws IOException {
 
-        String source = "C:/Users/Aleksandr/Documents/ParcingFactbook/Countries/";
+        //Source project folder where country files are stored
+        //Change to your own directory
+        String projectFolder = "C:/Users/Aleksandr/Documents/ParcingFactbook/";
+        String source = projectFolder + "Countries/";
+
         File coutryDir = new File(source);
         File[] files = coutryDir.listFiles();
 
+        //Excludes comparison data from the output
         String forbidenText = "country comparison to the world";
 
+        //Loops through all the files in the folder
         for (File file : files) {
 
             File input = new File(source + file.getName());
             Document doc = Jsoup.parse(input, "UTF-8");
             Elements classes = doc.select("[class]");
 
-            File output = new File("C:/Users/Aleksandr/Documents/ParcingFactbook/output/newCountryFile.txt");
+            //Creates a temp country file to write data to
+            File output = new File(projectFolder + "output/newCountryFile.txt");
             FileWriter out = new FileWriter(output);
 
             Element previous = null;
-
             String countryName = "";
+
+            //Pulls data from relevant html tags
             for( Element el : classes){
 
                 if(el.className().equals("countryName")){
@@ -74,11 +88,10 @@ public class FBParser {
                 out.close();
             }
 
-            File completeFile = new File("C:/Users/Aleksandr/Documents/ParcingFactbook/output/newCountryFile.txt");
-            File newFile = new File("C:/Users/Aleksandr/Documents/ParcingFactbook/output/" + countryName + ".txt");
+            //Renames file to country name
+            File completeFile = new File(projectFolder + "output/newCountryFile.txt");
+            File newFile = new File(projectFolder + "output/" + countryName + ".txt");
             completeFile.renameTo(newFile);
-
-            //rename operation here
         }
 
         System.out.println("Parcing Complete!");
