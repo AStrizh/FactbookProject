@@ -32,6 +32,6 @@ This project creates a MySQL database but should be easily configurable to work 
 
 ## Author
 
-Aleksandr Strizhevskiy, admin@erudos.com
+Aleksandr Strizhevskiy, strizhevskiy@erudos.com
 
 ---
