@@ -5,7 +5,8 @@ As of last updata it only parses HTML data and creates .txt files for all the co
 
 ## Process
 
-This project takes world data provided by the CIA in [The World Factbook] (https://www.cia.gov/library/publications/the-world-factbook/)
+This project takes world data provided by the CIA in 
+[The World Factbook](https://www.cia.gov/library/publications/the-world-factbook/)
 to create a relational database. The data is in the public domain and free for public use.
 [Download the World Factbook](https://www.cia.gov/library/publications/download/)
 
