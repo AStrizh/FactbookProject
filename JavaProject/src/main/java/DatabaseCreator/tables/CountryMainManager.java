@@ -10,16 +10,16 @@ public class CountryMainManager {
 
     private static Connection conn = ConnectionManager.getInstance().getConnection();
 
-    public static String displayAllRows() throws SQLException {
+    public static void displayAllRows() throws SQLException {
 
         String sql = "SELECT id, countryCode, countryName, region, introduction FROM CountryMain";
-        StringBuilder bf = new StringBuilder();
-        String result = null;
+
 
         try (
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
         ){
+            String result = null;
             while (rs.next()) {
                 result = (rs.getInt("id") + ": "
                          + rs.getString("countryCode") +", "
@@ -27,7 +27,7 @@ public class CountryMainManager {
                          + rs.getString("region")  +", "
                          + rs.getString("introduction"));
             }
+            System.out.println(result);
         }
-        return bf.toString();
     }
 }
