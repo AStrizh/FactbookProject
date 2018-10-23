@@ -27,7 +27,7 @@ All the "print" files are put in a separate folder and parsed from there.
 - [jsoup](https://mvnrepository.com/artifact/org.jsoup/jsoup/1.11.3)
 Used to parse HTML Factbook data downloaded from the CIA Factbook website   
 
-- [MySQL JDBC Driver](https://mvnrepository.com/artifact/mysql/mysql-connector-java/5.1.6)
+- [MySQL JDBC Driver](https://mvnrepository.com/artifact/mysql/mysql-connector-java/8.0.13)
 This project creates a MySQL database but should be easily configurable to work with any SQL database
 
 ---
