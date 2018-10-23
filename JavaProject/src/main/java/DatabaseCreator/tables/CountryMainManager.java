@@ -1,12 +1,10 @@
 package DatabaseCreator.tables;
 
+import DatabaseCreator.beans.CountryMain;
 import DatabaseCreator.util.ConnectionManager;
 import DatabaseCreator.util.DBUtil;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class CountryMainManager {
 
@@ -33,6 +31,33 @@ public class CountryMainManager {
             }
         } catch (SQLException e){
             DBUtil.processException(e);
+        }
+    }
+
+    public static boolean insert(CountryMain bean) {
+
+        String sql = "INSERT into CountryMain (countryCode, countryName, region, introduction) " +
+                "VALUES (?, ?, ?, ?)";
+
+        try (
+                PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        ) {
+
+            stmt.setString(1, bean.getCountryCode());
+            stmt.setString(2, bean.getCountryName());
+            stmt.setString(3, bean.getRegion());
+            stmt.setString(4, bean.getIntroduction());
+
+            if (stmt.executeUpdate() != 1) {
+                System.err.println("No rows affected");
+                return false;
+            } else
+                return true;
+
+
+        } catch (SQLException e) {
+            DBUtil.processException(e);
+            return false;
         }
     }
 }
