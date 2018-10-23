@@ -3,6 +3,7 @@ package DatabaseCreator;
 import java.io.*;
 import java.io.IOException;
 
+import DatabaseCreator.tables.CityManager;
 import DatabaseCreator.tables.CountryMainManager;
 import DatabaseCreator.util.ConnectionManager;
 import org.jsoup.*;
@@ -23,7 +24,8 @@ public class Main {
 
         ConnectionManager.getInstance();
 
-        CountryMainManager.displayAllRows();
+        //CountryMainManager.displayAllRows();
+        CityManager.displayAllRows();
 
         ConnectionManager.getInstance().close();
     }
