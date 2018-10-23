@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 
 public class CityManager {
@@ -27,7 +29,8 @@ public class CityManager {
                 result = (rs.getInt("id") + ": "
                         + rs.getString("countryCode") +", "
                         + rs.getString("cityName")  +", "
-                        + rs.getString("population"));
+                        + NumberFormat.getNumberInstance(Locale.getDefault())
+                        .format(rs.getInt("population")));
 
                 System.out.println(result);
             }
