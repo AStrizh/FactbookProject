@@ -9,6 +9,7 @@ public class City implements Serializable {
     private String countryCode;
     private String cityName;
     private int population;
+    private Boolean capital;
 
     public int getId() {
         return id;
@@ -40,5 +41,21 @@ public class City implements Serializable {
 
     public void setPopulation(int population) {
         this.population = population;
+    }
+
+    public Boolean getCapital() {
+        return capital;
+    }
+
+    public void setCapital(Boolean capital) {
+        this.capital = capital;
+    }
+
+    @Override
+    public String toString(){
+        return countryCode +
+               " " + cityName +
+               " " + population +
+               " " + capital;
     }
 }

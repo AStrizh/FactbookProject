@@ -4,7 +4,8 @@
     <list default="true" id="c3fe19ef-2aa2-40ba-a46b-51dcb16a816b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/DatabaseCreator/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DatabaseCreator/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/CountryMainManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/CountryMainManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DatabaseCreator/beans/City.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DatabaseCreator/beans/City.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/CityManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/CityManager.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -98,29 +99,29 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gradle" value="1" />
-          <entry key="java" value="1071" />
-          <entry key="txt" value="383" />
+          <entry key="java" value="2324" />
+          <entry key="txt" value="420" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="1" />
-          <entry key="JAVA" value="1071" />
-          <entry key="PLAIN_TEXT" value="383" />
+          <entry key="JAVA" value="2324" />
+          <entry key="PLAIN_TEXT" value="420" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.spring.boot.mvc.usages" />
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Groovy" value="1" />
-          <entry key="JAVA" value="16" />
+          <entry key="JAVA" value="19" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="gradle" value="1" />
-          <entry key="java" value="16" />
+          <entry key="java" value="19" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.spring.boot.run.usages" />
@@ -132,8 +133,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/CountryMainManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="726">
-              <caret line="61" column="5" lean-forward="true" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
+            <state relative-caret-position="198">
+              <caret line="37" lean-forward="true" selection-start-line="36" selection-end-line="61" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -153,10 +154,39 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
-              <caret line="120" column="32" lean-forward="true" selection-start-line="120" selection-start-column="32" selection-end-line="120" selection-end-column="32" />
+            <state relative-caret-position="236">
+              <caret line="148" column="8" selection-start-line="148" selection-start-column="8" selection-end-line="148" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/CityManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="346">
+              <caret line="40" column="32" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/beans/City.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="8" selection-start-line="8" selection-end-line="11" selection-end-column="28" />
+              <folding>
+                <element signature="e#311#312#0" expanded="true" />
+                <element signature="e#336#337#0" expanded="true" />
+                <element signature="e#947#948#0" expanded="true" />
+                <element signature="e#977#978#0" expanded="true" />
+                <element signature="e#1024#1025#0" expanded="true" />
+                <element signature="e#1062#1063#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -542,15 +572,15 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/java/DatabaseCreator/beans/CountryMain.java" />
-        <option value="$PROJECT_DIR$/src/main/java/DatabaseCreator/beans/City.java" />
         <option value="$PROJECT_DIR$/src/main/java/DatabaseCreator/beans/Geography.java" />
         <option value="$PROJECT_DIR$/src/main/java/DatabaseCreator/beans/Society.java" />
         <option value="$PROJECT_DIR$/src/main/java/DatabaseCreator/util/DBUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/DatabaseCreator/util/ConnectionManager.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/CityManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/FactbookParser/FBParser.java" />
         <option value="$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/CountryMainManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/DatabaseCreator/beans/City.java" />
+        <option value="$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/CityManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/DatabaseCreator/Main.java" />
       </list>
     </option>
@@ -681,7 +711,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540315376074" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540328368303" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -752,7 +782,7 @@
       <workItem from="1540124609188" duration="123000" />
       <workItem from="1540128409551" duration="145000" />
       <workItem from="1540128577640" duration="3044000" />
-      <workItem from="1540295036608" duration="13826000" />
+      <workItem from="1540295036608" duration="21605000" />
     </task>
     <task id="LOCAL-00001" summary="Created JavaBeans to encapsulate database tables">
       <created>1540296120630</created>
@@ -803,11 +833,18 @@
       <option name="project" value="LOCAL" />
       <updated>1540305970771</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="CountryMain table now populated">
+      <created>1540315451167</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1540315451167</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18219000" />
+    <option name="totallyTimeSpent" value="25998000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -822,7 +859,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.72017354" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.505423" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -862,7 +899,8 @@
     <MESSAGE value="Main now retrieves output from CountryMain table" />
     <MESSAGE value="Created CityManager to retrieve from City table" />
     <MESSAGE value="Use user default number formatting for population" />
-    <option name="LAST_COMMIT_MESSAGE" value="Use user default number formatting for population" />
+    <MESSAGE value="CountryMain table now populated" />
+    <option name="LAST_COMMIT_MESSAGE" value="CountryMain table now populated" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/beans/Society.java">
@@ -963,31 +1001,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/CityManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="26" column="33" lean-forward="true" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/beans/City.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" selection-start-line="8" selection-end-line="10" selection-end-column="27" />
-          <folding>
-            <element signature="e#311#312#0" expanded="true" />
-            <element signature="e#336#337#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/FactbookParser/FBParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="25" column="45" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="50" />
+        <state relative-caret-position="566">
+          <caret line="82" column="18" lean-forward="true" selection-start-line="82" selection-start-column="16" selection-end-line="82" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1001,10 +1018,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/beans/City.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" selection-start-line="8" selection-end-line="11" selection-end-column="28" />
+          <folding>
+            <element signature="e#311#312#0" expanded="true" />
+            <element signature="e#336#337#0" expanded="true" />
+            <element signature="e#947#948#0" expanded="true" />
+            <element signature="e#977#978#0" expanded="true" />
+            <element signature="e#1024#1025#0" expanded="true" />
+            <element signature="e#1062#1063#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/CityManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="40" column="32" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/CountryMainManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="726">
-          <caret line="61" column="5" lean-forward="true" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
+        <state relative-caret-position="198">
+          <caret line="37" lean-forward="true" selection-start-line="36" selection-end-line="61" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1013,8 +1055,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="120" column="32" lean-forward="true" selection-start-line="120" selection-start-column="32" selection-end-line="120" selection-end-column="32" />
+        <state relative-caret-position="236">
+          <caret line="148" column="8" selection-start-line="148" selection-start-column="8" selection-end-line="148" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

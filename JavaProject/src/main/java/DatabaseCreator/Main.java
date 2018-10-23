@@ -2,7 +2,10 @@ package DatabaseCreator;
 
 import java.io.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
 
+import DatabaseCreator.beans.City;
 import DatabaseCreator.beans.CountryMain;
 import DatabaseCreator.tables.CityManager;
 import DatabaseCreator.tables.CountryMainManager;
@@ -25,7 +28,7 @@ public class Main {
 
 
 
-        //ConnectionManager.getInstance();
+        ConnectionManager.getInstance();
 
         //CountryMainManager.displayAllRows();
         //CityManager.displayAllRows();
@@ -60,17 +63,17 @@ public class Main {
 
             //Pulls data from relevant html tags
             for( Element el : classes){
-
+                //TODO: Make sure all parts of country name are capitalized
                 if(el.className().contains("printHeader")){
                     String[] parts = el.text().split("::");
                     region = parts[0].trim();
                     countryName	= parts[1].trim();
-                    countryName = countryName.charAt(0) + countryName.substring(1, countryName.length()).toLowerCase();
+                    countryName = countryName.charAt(0) +
+                                  countryName.substring(1).toLowerCase();
                 }
 
                 if(el.className().contains("question ")){
                     sectionTitle = el.attributes().get("sectiontitle");
-                    //out.write(el.text() + ":\n\n");
                     if(countryCode == null)
                         countryCode = el.attributes().get("ccode").toUpperCase();
                 }
@@ -84,6 +87,16 @@ public class Main {
                         default:
                             ;
                     }
+                    if(previous.className().contains("_light") &&
+                       previous.text().contains("Major urban areas")){
+
+                        ArrayList<City> cityBeans = processCities(el.text().split(";"), countryCode);
+
+                        for(City city : cityBeans)
+                            CityManager.insert(city);
+
+                    }
+
                 }
 
 //                if(el.className().equals("countryName")){
@@ -118,7 +131,7 @@ public class Main {
 //                    }
 //                }
 //
-//                previous = el;
+                previous = el;
 
             }
             countryBean.setCountryCode(countryCode);
@@ -133,7 +146,49 @@ public class Main {
         System.out.println("Parcing Complete!");
 
 
-        //ConnectionManager.getInstance().close();
+        ConnectionManager.getInstance().close();
+    }
+
+    private static ArrayList<City> processCities( String[] cities, String countryCode){
+
+        ArrayList<City> cityBeans = new ArrayList<>();
+
+        for( String city : cities){
+
+            City cityBean = new City();
+            cityBean.setCountryCode(countryCode);
+            String[] cityData = city.trim().split(" ");
+
+            //Determines City Name
+            //TODO: Make sure city name is not getting chopped off
+            if (Pattern.matches("[a-zA-Z]+", Character.toString(cityData[1].charAt(0)) )){
+                cityBean.setCityName(cityData[0] + " " + cityData[1]);
+            }else
+                cityBean.setCityName(cityData[0]);
+
+            //Checks if a capital
+            if( cityData[1].equals("(capital)") )
+                cityBean.setCapital(true);
+            else
+                cityBean.setCapital(false);
+
+            double number = 0;
+            for(int i = 1; i<cityData.length; i++){
+                try {
+                    number = Double.parseDouble(cityData[i].replace(",",""));
+                    if( i+1 < cityData.length && cityData[i+1].equals("million")){
+                        number = number * 1000000;
+                    }
+                    cityBean.setPopulation((int)number);
+                }
+                catch(NumberFormatException e) {
+                }
+                if( number != 0.0)
+                    break;
+            }
+            cityBeans.add(cityBean);
+        }
+        return cityBeans;
     }
 
 
