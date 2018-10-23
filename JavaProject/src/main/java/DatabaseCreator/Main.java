@@ -3,6 +3,8 @@ package DatabaseCreator;
 import java.io.*;
 import java.io.IOException;
 
+import DatabaseCreator.tables.CountryMainManager;
+import DatabaseCreator.util.ConnectionManager;
 import org.jsoup.*;
 import org.jsoup.nodes.*;
 import org.jsoup.select.*;
@@ -19,7 +21,11 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        System.out.println("Hello, World!");
+        ConnectionManager.getInstance();
+
+        CountryMainManager.displayAllRows();
+
+        ConnectionManager.getInstance().close();
     }
 
 

@@ -1,6 +1,8 @@
 package DatabaseCreator.tables;
 
 import DatabaseCreator.util.ConnectionManager;
+import DatabaseCreator.util.DBUtil;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,7 +12,7 @@ public class CountryMainManager {
 
     private static Connection conn = ConnectionManager.getInstance().getConnection();
 
-    public static void displayAllRows() throws SQLException {
+    public static void displayAllRows() {
 
         String sql = "SELECT id, countryCode, countryName, region, introduction FROM CountryMain";
 
@@ -26,8 +28,11 @@ public class CountryMainManager {
                          + rs.getString("countryName")  +", "
                          + rs.getString("region")  +", "
                          + rs.getString("introduction"));
+
+                System.out.println(result);
             }
-            System.out.println(result);
+        } catch (SQLException e){
+            DBUtil.processException(e);
         }
     }
 }
