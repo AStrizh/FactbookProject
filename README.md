@@ -1,7 +1,10 @@
 # FactbookProject
 Project to create an SQL database from CIA Factbook data
 
-As of last updata it only parses HTML data and creates .txt files for all the countries.
+As of last update: 
+
+Data entry for major cities from the "Major urban areas - population" which falls under the "People and Society category."
+Data entry for main country data table, which contains country code, region, country name, and the CIA history introduction.
 
 ## Process
 
