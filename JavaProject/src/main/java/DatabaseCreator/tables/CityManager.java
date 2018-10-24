@@ -40,7 +40,7 @@ public class CityManager {
 
     public static boolean insert(City bean) {
 
-        String sql = "INSERT into City (countryCode, cityName, population, capital) " +
+        String sql = "INSERT INTO City (countryCode, cityName, population, capital) " +
                 "VALUES (?, ?, ?, ?)";
 
         try (

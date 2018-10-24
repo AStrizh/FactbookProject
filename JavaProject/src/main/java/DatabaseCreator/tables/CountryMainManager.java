@@ -36,7 +36,7 @@ public class CountryMainManager {
 
     public static boolean insert(CountryMain bean) {
 
-        String sql = "INSERT into CountryMain (countryCode, countryName, region, introduction) " +
+        String sql = "INSERT INTO CountryMain (countryCode, countryName, region, introduction) " +
                 "VALUES (?, ?, ?, ?)";
 
         try (
