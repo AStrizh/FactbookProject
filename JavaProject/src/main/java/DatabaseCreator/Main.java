@@ -38,12 +38,12 @@ public class Main {
         String projectFolder = "C:/Users/Aleksandr/Documents/ParcingFactbook/";
         String source = projectFolder + "Countries/";
 
-        File coutryDir = new File(source);
-        File[] files = coutryDir.listFiles();
+        File countryDir = new File(source);
+        File[] files = countryDir.listFiles();
 
 
         //Excludes comparison data from the output
-        //String forbidenText = "country comparison to the world";
+        //String forbiddenText = "country comparison to the world";
 
         //Loops through all the files in the folder
         for (File file : files) {
@@ -56,20 +56,28 @@ public class Main {
 
             Element previous = null;
             String countryCode = null;
-            String countryName = null;
-            String region = null;
-            String sectionTitle = null;
+            String countryName = "";
+            String region = "";
+            String sectionTitle = "";
             String introduction = "";
 
             //Pulls data from relevant html tags
             for( Element el : classes){
-                //TODO: Make sure all parts of country name are capitalized
+
                 if(el.className().contains("printHeader")){
                     String[] parts = el.text().split("::");
                     region = parts[0].trim();
-                    countryName	= parts[1].trim();
-                    countryName = countryName.charAt(0) +
-                                  countryName.substring(1).toLowerCase();
+
+                    String tempName = parts[1].trim();
+                    if(parts[1].trim().contains(" "))
+                        countryName = spacedCountryName(tempName);
+                    else if (parts[1].trim().contains("-"))
+                        countryName = hyphenedCountryName(tempName);
+                    else
+                        countryName = singleCountryName(tempName);
+
+                    //Identifies currently parsing country
+                    System.out.println(countryName);
                 }
 
                 if(el.className().contains("question ")){
@@ -91,10 +99,7 @@ public class Main {
                        previous.text().contains("Major urban areas")){
 
                         ArrayList<City> cityBeans = processCities(el.text().split(";"), countryCode);
-
-                        for(City city : cityBeans)
-                            CityManager.insert(city);
-
+                        for(City city : cityBeans) CityManager.insert(city);
                     }
 
                 }
@@ -139,11 +144,9 @@ public class Main {
             countryBean.setRegion(region);
             countryBean.setIntroduction(introduction);
             CountryMainManager.insert(countryBean);
-
-
         }
 
-        System.out.println("Parcing Complete!");
+        System.out.println("Parsing Complete!");
 
 
         ConnectionManager.getInstance().close();
@@ -160,17 +163,21 @@ public class Main {
             String[] cityData = city.trim().split(" ");
 
             //Determines City Name
-            //TODO: Make sure city name is not getting chopped off
-            if (Pattern.matches("[a-zA-Z]+", Character.toString(cityData[1].charAt(0)) )){
-                cityBean.setCityName(cityData[0] + " " + cityData[1]);
-            }else
-                cityBean.setCityName(cityData[0]);
+            StringBuilder sb = new StringBuilder();
+            for(String str : cityData){
+                if (Pattern.matches("[a-zA-Z]+", Character.toString(str.charAt(0)) )){
+                    sb.append(" " + str);
+                }else
+                    break;
+            }
+            cityBean.setCityName(sb.toString().trim());
 
             //Checks if a capital
-            if( cityData[1].equals("(capital)") )
-                cityBean.setCapital(true);
-            else
-                cityBean.setCapital(false);
+            cityBean.setCapital(false);
+            for(String str : cityData){
+                if(str.equals("(capital)"))
+                    cityBean.setCapital(true);
+            }
 
             double number = 0;
             for(int i = 1; i<cityData.length; i++){
@@ -182,6 +189,7 @@ public class Main {
                     cityBean.setPopulation((int)number);
                 }
                 catch(NumberFormatException e) {
+                    //Should ignore failed attempts
                 }
                 if( number != 0.0)
                     break;
@@ -191,5 +199,35 @@ public class Main {
         return cityBeans;
     }
 
+
+    private static String singleCountryName(String tempName){
+        return tempName.charAt(0) + tempName.substring(1).toLowerCase();
+    }
+
+    private static String spacedCountryName(String tempName){
+        String countryName = "";
+
+        String[] nameParts	= tempName.split(" ");
+        for(String part : nameParts){
+            if(part.charAt(0) == '(')
+                countryName = countryName + " (" + part.charAt(1) + part.substring(2).toLowerCase();
+            else
+                countryName = countryName + " " + part.charAt(0) + part.substring(1).toLowerCase();
+        }
+
+        return countryName.trim();
+    }
+
+    //TODO: Decide whether to keep hyphens
+    private static String hyphenedCountryName(String tempName){
+        String countryName = "";
+
+        String[] nameParts	= tempName.split("-");
+
+        countryName = nameParts[0].charAt(0) + nameParts[0].substring(1).toLowerCase()
+              + "-" + nameParts[1].charAt(0) + nameParts[1].substring(1).toLowerCase();
+
+        return countryName;
+    }
 
 }
