@@ -218,7 +218,6 @@ public class Main {
         return countryName.trim();
     }
 
-    //TODO: Decide whether to keep hyphens
     private static String hyphenedCountryName(String tempName){
         String countryName = "";
 
