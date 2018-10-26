@@ -44,7 +44,6 @@ public class DatabaseRestarter {
         try (
                 PreparedStatement stmt = conn.prepareStatement(sql)
         ) {
-            System.out.println(sql);
             stmt.executeUpdate();
         } catch (SQLException e) {
             DBUtil.processException(e);
