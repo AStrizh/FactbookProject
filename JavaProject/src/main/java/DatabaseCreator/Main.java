@@ -18,7 +18,7 @@ import DatabaseCreator.util.DatabaseRestarter;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-
+        long millisStart = System.currentTimeMillis();
         ConnectionManager.getInstance();
         //refreshes the database
         new DatabaseRestarter();
@@ -37,5 +37,8 @@ public class Main {
 
         System.out.println("Parsing Complete!");
         ConnectionManager.getInstance().close();
+        long millisEnd = System.currentTimeMillis();
+        System.out.println("Process ran " + (millisEnd-millisStart) + " milli seconds.");
+
     }
 }
