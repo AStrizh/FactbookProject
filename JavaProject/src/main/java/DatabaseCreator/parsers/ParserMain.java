@@ -73,14 +73,6 @@ public class ParserMain {
                         if(previous.className().contains("category")){
                             if(previous.text().contains("border countries")){
 
-                                //TODO: Create method "cleanParentheses"
-                                //TODO: This parentheses method doesn't work
-                                //Method eats stuff in between parentheses too
-
-                                //String formated = removeParentheses(el.text());
-                                //String formated = normalize_removeTextInParentheses(el.text());
-                                //System.out.println(countryCode + "   " + formated);
-
                                 String borders = removeParentheses(el.text()).trim();
                                 ArrayList<Border> borderNations = processBorders(
                                         borders.split(" km ,| km,| km"), countryCode);
