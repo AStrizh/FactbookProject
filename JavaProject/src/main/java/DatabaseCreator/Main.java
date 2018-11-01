@@ -2,9 +2,11 @@ package DatabaseCreator;
 
 import java.io.*;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import DatabaseCreator.parsers.ParserMain;
 import DatabaseCreator.util.ConnectionManager;
+import DatabaseCreator.util.DBUtil;
 import DatabaseCreator.util.DatabaseRestarter;
 
 /**
@@ -20,8 +22,16 @@ public class Main {
     public static void main(String[] args) throws IOException {
         long millisStart = System.currentTimeMillis();
         ConnectionManager.getInstance();
+
         //refreshes the database
         new DatabaseRestarter();
+
+        try{
+            ConnectionManager.getInstance().getConnection().setAutoCommit(false);
+        }catch (SQLException e){
+            DBUtil.processException(e);
+        }
+
 
 
         //Source project folder where country files are stored
@@ -34,6 +44,12 @@ public class Main {
         //Loops through all the files in the folder
         for (File file : files)
             ParserMain.mainParser(file);
+
+        try{
+            ConnectionManager.getInstance().getConnection().commit();
+        }catch (SQLException e){
+            DBUtil.processException(e);
+        }
 
         System.out.println("Parsing Complete!");
         ConnectionManager.getInstance().close();
