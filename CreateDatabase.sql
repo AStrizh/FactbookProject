@@ -19,6 +19,13 @@ CREATE TABLE `city` (
 	`Capital` BOOLEAN
 );
 
+CREATE TABLE `border` (
+    `Id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `CountryCode` CHAR(2) NOT NULL, 
+	`BorderCountry` VARCHAR(50) NOT NULL, 
+	`BorderLengthKM` DOUBLE
+);
+
 
 CREATE TABLE `geography` (
     `Id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
