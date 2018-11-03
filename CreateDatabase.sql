@@ -30,18 +30,18 @@ CREATE TABLE `border` (
 CREATE TABLE `geography` (
     `Id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `CountryCode` CHAR(2) NOT NULL,
-    `Lat` FLOAT( 10, 6 ) NOT NULL,
-    `Lng` FLOAT( 10, 6 ) NOT NULL,
-	`LandArea` INT,
-    `WaterArea` INT,
-    `LandBoundaries` INT,
-    `Coastline` INT,
-	`MeanElevation` INT,
-	`LowestPointDistance` INT,
+    `Lat` DECIMAL( 8, 1 ),
+    `Lng` DECIMAL( 8, 1 ),
+	`LandArea` DECIMAL( 9, 1 ),
+    `WaterArea` DECIMAL( 8, 1 ),
+    `LandBoundaries` DECIMAL( 8, 1 ),
+    `Coastline` DECIMAL( 8, 1 ),
+	`MeanElevation` DECIMAL( 8, 1 ),
+	`LowestPointDistance` DECIMAL( 8, 1 ),
 	`LowestPointName` VARCHAR(50),
-	`HighestPointDistance` INT,
+	`HighestPointDistance` DECIMAL( 8, 1 ),
 	`HighestPointName` VARCHAR(50),
-	`IrrigatedLand` INT
+	`IrrigatedLand` DECIMAL( 8, 1 )
 );
 
 CREATE TABLE `society` (
