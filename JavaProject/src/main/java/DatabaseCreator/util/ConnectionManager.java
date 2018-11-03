@@ -10,7 +10,7 @@ public class ConnectionManager {
 
     private final String USERNAME = "dbuser";
     private final String PASSWORD = "dbpassword";
-    private final String CONN_STRING = "jdbc:mysql://localhost/factbook";
+    private final String CONN_STRING = "jdbc:mysql://localhost/";
 
 
     private Connection conn = null;
