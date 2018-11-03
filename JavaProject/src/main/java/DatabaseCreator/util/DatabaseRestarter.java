@@ -7,7 +7,6 @@ import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class DatabaseRestarter {
 
@@ -21,13 +20,13 @@ public class DatabaseRestarter {
         String[] sqlCommands = sqlFile.split(";");
 
         for(String sql : sqlCommands)
-            executer(conn, sql);
+            executor(conn, sql);
     }
 
 
     private static String reader() {
 
-        String projectFolder = "C:/Users/Aleksandr/Documents/ParcingFactbook/";
+        String projectFolder = "C:/Users/Aleksandr/Documents/ParcingFactbook/FactbookProject/";
         String source = projectFolder + "CreateDatabase.sql";
 
         try{
@@ -38,11 +37,10 @@ public class DatabaseRestarter {
 
     }
 
-    private static void executer(Connection conn, String sql){
-
+    private static void executor(Connection conn, String sql){
 
         try (
-                PreparedStatement stmt = conn.prepareStatement(sql)
+            PreparedStatement stmt = conn.prepareStatement(sql)
         ) {
             stmt.executeUpdate();
         } catch (SQLException e) {
