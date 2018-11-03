@@ -12,7 +12,7 @@ public class GeographyManager {
 
     public static void displayAllRows() {
 
-        String sql = "SELECT * FROM CountryMain";
+        String sql = "SELECT * FROM Geography";
 
         try (
                 Statement stmt = conn.createStatement();
@@ -44,11 +44,11 @@ public class GeographyManager {
 
     public static boolean insert(Geography bean) {
 
-        String sql = "INSERT INTO CountryMain " +
+        String sql = "INSERT INTO Geography " +
                 "(countryCode, lat, lng, landArea, waterArea, " +
                 "landBoundaries, coastline, meanElevation, lowestPointDistance, lowestPointName, " +
-                "highestPointDistance, highestPointName,irrigatedLand) " +
-                "VALUES (?, ?, ?, ?, ? " +"?, ?, ?, ?, ?, ? "+ "?, ?, ?)";
+                "highestPointDistance, highestPointName, irrigatedLand) " +
+                "VALUES (?, ?, ?, ?, ?, " +"?, ?, ?, ?, ?, "+ "?, ?, ?)";
 
         try (
                 PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -60,15 +60,15 @@ public class GeographyManager {
             stmt.setDouble(4, bean.getLandArea());
             stmt.setDouble(5, bean.getWaterArea());
 
-            stmt.setDouble(5, bean.getLandBoundaries());
-            stmt.setDouble(5, bean.getCoastline());
-            stmt.setDouble(5, bean.getMeanElevation());
-            stmt.setDouble(5, bean.getLowestPointDistance());
-            stmt.setString(5, bean.getLowestPointName());
+            stmt.setDouble(6, bean.getLandBoundaries());
+            stmt.setDouble(7, bean.getCoastline());
+            stmt.setDouble(8, bean.getMeanElevation());
+            stmt.setDouble(9, bean.getLowestPointDistance());
+            stmt.setString(10, bean.getLowestPointName());
 
-            stmt.setDouble(5, bean.getHighestPointDistance());
-            stmt.setString(5, bean.getHighestPointName());
-            stmt.setDouble(5, bean.getIrrigatedLand());
+            stmt.setDouble(11, bean.getHighestPointDistance());
+            stmt.setString(12, bean.getHighestPointName());
+            stmt.setDouble(13, bean.getIrrigatedLand());
 
             if (stmt.executeUpdate() != 1) {
                 System.err.println("No rows affected");
