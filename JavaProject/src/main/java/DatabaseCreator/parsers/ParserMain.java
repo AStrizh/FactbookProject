@@ -3,7 +3,9 @@ package DatabaseCreator.parsers;
 
 import java.io.*;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.regex.Pattern;
 
 import DatabaseCreator.beans.Border;
@@ -13,6 +15,7 @@ import DatabaseCreator.beans.Geography;
 import DatabaseCreator.tables.BorderManager;
 import DatabaseCreator.tables.CityManager;
 import DatabaseCreator.tables.CountryMainManager;
+import DatabaseCreator.tables.GeographyManager;
 import DatabaseCreator.util.ConnectionManager;
 import org.jsoup.*;
 import org.jsoup.nodes.*;
@@ -29,6 +32,7 @@ public class ParserMain {
         Elements classes = doc.select("[class]");
 
         CountryMain countryBean = new CountryMain();
+        Geography geoBean = new Geography();
 
         Element previous = null;
         String countryCode = null;
@@ -53,7 +57,7 @@ public class ParserMain {
                     countryName = singleCountryName(tempName);
 
                 //Identifies currently parsing country
-                //System.out.println("*******"+countryName+"*******");
+                System.out.println("*******"+countryName+"*******");
             }
 
             if(el.className().contains("question ")){
@@ -70,6 +74,8 @@ public class ParserMain {
                         introduction = introduction + el.text() + "\n";
                         break;
                     case "Geography":
+                        geoBean.setCountryCode(countryCode);
+
                         if(previous.className().contains("category")){
                             if(previous.text().contains("border countries")){
 
@@ -82,18 +88,36 @@ public class ParserMain {
                             }
                         }
 
+                        //TODO: Configure these into geo bean
+//                        if( el.text().contains("lowest point:"))
+//                            System.out.println(el.text());
+//
+//                        if( el.text().contains("highest point:"))
+//                            System.out.println(el.text());
+
                         switch (previous.text()){
                             case "Geographic coordinates:":
                                 //System.out.println( "Geographic coordinates: " + el.text());
+                                //System.out.println( Arrays.toString(parseGeoCords(el.text())) );
+                                String[] coords = parseGeoCords(el.text());
+                                geoBean.setLat(createDouble(coords[0]));
+                                geoBean.setLng(createDouble(coords[1]));
                                 break;
                             case "Coastline:":
-                                //System.out.println("Coastline: " + el.text());
+                                geoBean.setCoastline(createDouble(el.text().split(" ")[0]));
                                 break;
                             case "Irrigated land:":
-                                //System.out.println("Irrigated land: " + el.text());
+                                geoBean.setIrrigatedLand(createDouble(el.text().split(" ")[0]));
                                 break;
-
-
+                            case "land:":
+                                geoBean.setLandArea(createDouble(el.text().split(" ")[0]));
+                                break;
+                            case "water:":
+                                geoBean.setWaterArea(createDouble(el.text().split(" ")[0]));
+                                break;
+                            case "mean elevation:":
+                                geoBean.setMeanElevation(createDouble(el.text().split(" ")[0]));
+                                break;
                             default:
                                 ;
                         }
@@ -110,9 +134,6 @@ public class ParserMain {
                     default:
                         ;
                 }
-
-
-
             }
 
             previous = el;
@@ -123,6 +144,8 @@ public class ParserMain {
         countryBean.setRegion(region);
         countryBean.setIntroduction(introduction);
         CountryMainManager.insert(countryBean);
+
+        GeographyManager.insert(geoBean);
     }
 
     private static String singleCountryName(String tempName){
@@ -244,23 +267,6 @@ public class ParserMain {
         return cityBeans;
     }
 
-//    private static String removeParentheses(String str){
-//
-//        StringBuilder br = new StringBuilder();
-//        //int flag = 0;
-//
-//        for(int i = 0; i<str.length(); i++){
-//            if(str.charAt(i) == '('){
-//                while (str.charAt(i) != ')')
-//                    i++;
-//                i++;
-//            }
-//            if(i<str.length())
-//                br.append(str.charAt(i));
-//        }
-//        return br.toString();
-//    }
-
     private static String removeParentheses(String str){
 
         StringBuilder sb = new StringBuilder();
@@ -280,5 +286,52 @@ public class ParserMain {
                 sb.append(str.charAt(i));
         }
         return sb.toString();
+    }
+
+    private static String[] parseGeoCords(String coordinates){
+        String[] tempCoord = coordinates.split(",");
+        String[] lat = tempCoord[0].trim().split(" ");
+        String[] lng = tempCoord[1].trim().split(" ");
+
+        StringBuilder sb = new StringBuilder();
+
+        if(lat[2].equals("S"))
+            sb.append("-");
+
+        sb.append(lat[0] + "." + lat[1] + " ");
+
+        if(lng[2].equals("W"))
+            sb.append("-");
+
+        sb.append(lng[0] + "." + lng[1]);
+
+        return new String[]
+                {(lat[2].equals("S") ? "-" : "") + lat[0] + "." + lat[1],
+                 (lng[2].equals("W") ? "-" : "") + lng[0] + "." + lng[1]};
+    }
+
+    private static double createDouble( String number){
+        double result = 0.0;
+        try {
+            result = Double.parseDouble(number.replace(",",""));
+        }
+        catch(NumberFormatException e) {
+            //System.out.println(number + " could not be formatted to double");
+        }
+
+        return result;
+    }
+
+    private static int createInt(String number){
+        int result = 0;
+
+        try{
+            double temp = Double.parseDouble(number.replace(",",""));
+            temp = Math.round(temp);
+            result = (int)temp;
+        }catch (NumberFormatException e){
+            System.out.println(number + " could not be formatted to integer");
+        }
+        return result;
     }
 }
