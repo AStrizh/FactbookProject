@@ -24,16 +24,16 @@ public class GeographyManager {
                         + rs.getString("countryCode") +", "
                         + rs.getDouble("lat") +", "
                         + rs.getDouble("lng") +", "
-                        + rs.getInt("landArea") + ", "
-                        + rs.getInt("waterArea") + ", "
-                        + rs.getInt("landBoundaries") + ", "
-                        + rs.getInt("coastline") + ", "
-                        + rs.getInt("meanElevation") + ", "
-                        + rs.getInt("lowestPointDistance") + ", "
+                        + rs.getDouble("landArea") + ", "
+                        + rs.getDouble("waterArea") + ", "
+                        + rs.getDouble("landBoundaries") + ", "
+                        + rs.getDouble("coastline") + ", "
+                        + rs.getDouble("meanElevation") + ", "
+                        + rs.getDouble("lowestPointDistance") + ", "
                         + rs.getString("lowestPointName") +", "
-                        + rs.getInt("highestPointDistance") + ", "
+                        + rs.getDouble("highestPointDistance") + ", "
                         + rs.getString("highestPointName") +", "
-                        + rs.getInt("irrigatedLand"));
+                        + rs.getDouble("irrigatedLand"));
 
                 System.out.println(result);
             }
@@ -57,18 +57,18 @@ public class GeographyManager {
             stmt.setString(1, bean.getCountryCode());
             stmt.setDouble(2, bean.getLat());
             stmt.setDouble(3, bean.getLng());
-            stmt.setInt(4, bean.getLandArea());
-            stmt.setInt(5, bean.getWaterArea());
+            stmt.setDouble(4, bean.getLandArea());
+            stmt.setDouble(5, bean.getWaterArea());
 
-            stmt.setInt(5, bean.getLandBoundaries());
-            stmt.setInt(5, bean.getCoastline());
-            stmt.setInt(5, bean.getMeanElevation());
-            stmt.setInt(5, bean.getLowestPointDistance());
+            stmt.setDouble(5, bean.getLandBoundaries());
+            stmt.setDouble(5, bean.getCoastline());
+            stmt.setDouble(5, bean.getMeanElevation());
+            stmt.setDouble(5, bean.getLowestPointDistance());
             stmt.setString(5, bean.getLowestPointName());
 
-            stmt.setInt(5, bean.getHighestPointDistance());
+            stmt.setDouble(5, bean.getHighestPointDistance());
             stmt.setString(5, bean.getHighestPointName());
-            stmt.setInt(5, bean.getIrrigatedLand());
+            stmt.setDouble(5, bean.getIrrigatedLand());
 
             if (stmt.executeUpdate() != 1) {
                 System.err.println("No rows affected");

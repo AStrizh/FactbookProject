@@ -6,16 +6,16 @@ public class Geography {
     private String countryCode;
     private double lat;
     private double lng;
-    private int landArea;
-    private int waterArea;
-    private int landBoundaries;
-    private int coastline;
-    private int meanElevation;
-    private int lowestPointDistance;
+    private double landArea;
+    private double waterArea;
+    private double landBoundaries;
+    private double coastline;
+    private double meanElevation;
+    private double lowestPointDistance;
     private String lowestPointName;
-    private int highestPointDistance;
+    private double highestPointDistance;
     private String highestPointName;
-    private int irrigatedLand;
+    private double irrigatedLand;
 
     public int getId() {
         return id;
@@ -49,51 +49,52 @@ public class Geography {
         this.lng = lng;
     }
 
-    public int getLandArea() {
+
+    public double getLandArea() {
         return landArea;
     }
 
-    public void setLandArea(int landArea) {
+    public void setLandArea(double landArea) {
         this.landArea = landArea;
     }
 
-    public int getWaterArea() {
+    public double getWaterArea() {
         return waterArea;
     }
 
-    public void setWaterArea(int waterArea) {
+    public void setWaterArea(double waterArea) {
         this.waterArea = waterArea;
     }
 
-    public int getLandBoundaries() {
+    public double getLandBoundaries() {
         return landBoundaries;
     }
 
-    public void setLandBoundaries(int landBoundaries) {
+    public void setLandBoundaries(double landBoundaries) {
         this.landBoundaries = landBoundaries;
     }
 
-    public int getCoastline() {
+    public double getCoastline() {
         return coastline;
     }
 
-    public void setCoastline(int coastline) {
+    public void setCoastline(double coastline) {
         this.coastline = coastline;
     }
 
-    public int getMeanElevation() {
+    public double getMeanElevation() {
         return meanElevation;
     }
 
-    public void setMeanElevation(int meanElevation) {
+    public void setMeanElevation(double meanElevation) {
         this.meanElevation = meanElevation;
     }
 
-    public int getLowestPointDistance() {
+    public double getLowestPointDistance() {
         return lowestPointDistance;
     }
 
-    public void setLowestPointDistance(int lowestPointDistance) {
+    public void setLowestPointDistance(double lowestPointDistance) {
         this.lowestPointDistance = lowestPointDistance;
     }
 
@@ -105,11 +106,11 @@ public class Geography {
         this.lowestPointName = lowestPointName;
     }
 
-    public int getHighestPointDistance() {
+    public double getHighestPointDistance() {
         return highestPointDistance;
     }
 
-    public void setHighestPointDistance(int highestPointDistance) {
+    public void setHighestPointDistance(double highestPointDistance) {
         this.highestPointDistance = highestPointDistance;
     }
 
@@ -121,11 +122,11 @@ public class Geography {
         this.highestPointName = highestPointName;
     }
 
-    public int getIrrigatedLand() {
+    public double getIrrigatedLand() {
         return irrigatedLand;
     }
 
-    public void setIrrigatedLand(int irrigatedLand) {
+    public void setIrrigatedLand(double irrigatedLand) {
         this.irrigatedLand = irrigatedLand;
     }
 }
