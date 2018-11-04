@@ -39,6 +39,7 @@ public class ParserMain {
         String countryName = "";
         String region = "";
         String sectionTitle = "";
+        String categoryTitle = "";
         String introduction = "";
 
         //Pulls data from relevant html tags
@@ -66,6 +67,10 @@ public class ParserMain {
                     countryCode = el.attributes().get("ccode").toUpperCase();
             }
 
+            if(el.className().contains("_light")){
+                categoryTitle = el.text();
+            }
+
 
             if(el.className().equals("category_data")){
 
@@ -75,6 +80,10 @@ public class ParserMain {
                         break;
                     case "Geography":
                         geoBean.setCountryCode(countryCode);
+
+                        if(categoryTitle.equals("Land boundaries:") && previous.text().equals("total:"))
+                            geoBean.setLandBoundaries(createDouble(el.text().split(" ")[0]));
+
 
                         if(previous.className().contains("category")){
                             if(previous.text().contains("border countries")){
@@ -88,12 +97,23 @@ public class ParserMain {
                             }
                         }
 
+                        if(el.text().contains("border countries"))
+                            System.out.println(previous.text());
+
                         //TODO: Configure these into geo bean
-//                        if( el.text().contains("lowest point:"))
-//                            System.out.println(el.text());
-//
-//                        if( el.text().contains("highest point:"))
-//                            System.out.println(el.text());
+                        if( el.text().contains("lowest point:")){
+                            String[] response = processElevation(removeParentheses(el.text()));
+                            geoBean.setLowestPointName(response[0]);
+                            geoBean.setLowestPointDistance(createDouble(response[1]));
+                        }
+
+                        if( el.text().contains("highest point:")){
+                            String[] response = processElevation(removeParentheses(el.text()));
+                            geoBean.setHighestPointName(response[0]);
+                            geoBean.setHighestPointDistance(createDouble(response[1]));
+                        }
+
+
 
                         switch (previous.text()){
                             case "Geographic coordinates:":
@@ -177,6 +197,31 @@ public class ParserMain {
         return countryName;
     }
 
+
+    private static String[] processElevation(String elevation){
+        String[] elevArray = elevation.split("  | ");
+
+        StringBuilder sb = new StringBuilder();
+        int i = 2;
+
+        //Avoids issue where the elevation has a numbered name
+        if(Pattern.matches("[0-9]", Character.toString(elevArray[2].charAt(0)))){
+            sb.append(elevArray[2]);
+            i++;
+        }
+
+        while (!Pattern.matches("[0-9\\-]", Character.toString(elevArray[i].charAt(0)))){
+            sb.append(" " + elevArray[i]);
+            i++;
+        }
+
+        String elevName = sb.toString().trim();
+        //System.out.println(elevName);
+
+        //System.out.println(elevArray[i]);
+
+        return new String[]{elevName,elevArray[i]};
+    }
 
     private static ArrayList<Border> processBorders(String[] borders, String countryCode){
         ArrayList<Border> borderNations = new ArrayList<>();
