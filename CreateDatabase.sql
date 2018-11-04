@@ -38,9 +38,9 @@ CREATE TABLE `geography` (
     `Coastline` DECIMAL( 8, 1 ),
 	`MeanElevation` DECIMAL( 8, 1 ),
 	`LowestPointDistance` DECIMAL( 8, 1 ),
-	`LowestPointName` VARCHAR(50),
+	`LowestPointName` VARCHAR(70),
 	`HighestPointDistance` DECIMAL( 8, 1 ),
-	`HighestPointName` VARCHAR(50),
+	`HighestPointName` VARCHAR(60),
 	`IrrigatedLand` DECIMAL( 8, 1 )
 );
 
