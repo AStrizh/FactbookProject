@@ -8,14 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
-import DatabaseCreator.beans.Border;
-import DatabaseCreator.beans.City;
-import DatabaseCreator.beans.CountryMain;
-import DatabaseCreator.beans.Geography;
-import DatabaseCreator.tables.BorderManager;
-import DatabaseCreator.tables.CityManager;
-import DatabaseCreator.tables.CountryMainManager;
-import DatabaseCreator.tables.GeographyManager;
+import DatabaseCreator.beans.*;
+import DatabaseCreator.tables.*;
 import DatabaseCreator.util.ConnectionManager;
 import org.jsoup.*;
 import org.jsoup.nodes.*;
@@ -33,6 +27,7 @@ public class ParserMain {
 
         CountryMain countryBean = new CountryMain();
         Geography geoBean = new Geography();
+        Society societyBean = new Society();
 
         Element previous = null;
         String countryCode = null;
@@ -100,7 +95,6 @@ public class ParserMain {
                         if(el.text().contains("border countries"))
                             System.out.println(previous.text());
 
-                        //TODO: Configure these into geo bean
                         if( el.text().contains("lowest point:")){
                             String[] response = processElevation(removeParentheses(el.text()));
                             geoBean.setLowestPointName(response[0]);
@@ -113,12 +107,8 @@ public class ParserMain {
                             geoBean.setHighestPointDistance(createDouble(response[1]));
                         }
 
-
-
                         switch (previous.text()){
                             case "Geographic coordinates:":
-                                //System.out.println( "Geographic coordinates: " + el.text());
-                                //System.out.println( Arrays.toString(parseGeoCords(el.text())) );
                                 String[] coords = parseGeoCords(el.text());
                                 geoBean.setLat(createDouble(coords[0]));
                                 geoBean.setLng(createDouble(coords[1]));
@@ -143,12 +133,180 @@ public class ParserMain {
                         }
                         break;
                     case "People and Society":
-                        if(previous.className().contains("_light") &&
-                                previous.text().contains("Major urban areas")){
+                        societyBean.setCountryCode(countryCode);
+
+                        if(categoryTitle.contains("Major urban areas")){
 
                             ArrayList<City> cityBeans = processCities(el.text().split(";"), countryCode);
                             for(City city : cityBeans)
                                 CityManager.insert(city);
+                        }
+
+                        switch (categoryTitle){
+                            case "Infant mortality rate:":
+                                if (previous.text().equals("male:"))
+                                    societyBean.setInfantMaleMortalityRatePer1K(createDouble(el.text().split(" ")[0]));
+                                else if (previous.text().equals("female:"))
+                                    societyBean.setInfantFemaleMortalityRatePer1K(createDouble(el.text().split(" ")[0]));
+                                break;
+                            case "Life expectancy at birth:":
+                                if (previous.text().equals("male:"))
+                                    societyBean.setMaleLifeExpectancy(createDouble(el.text().split(" ")[0]));
+                                else if (previous.text().equals("female:"))
+                                    societyBean.setFemaleLifeExpectancy(createDouble(el.text().split(" ")[0]));
+                                break;
+                            case "School life expectancy (primary to tertiary education):":
+                                if (previous.text().equals("male:"))
+                                    societyBean.setMaleSchoolLifeExpectancy(createInt(el.text().split(" ")[0]));
+                                else if (previous.text().equals("female:"))
+                                    societyBean.setFemaleSchoolLifeExpectancy(createInt(el.text().split(" ")[0]));
+                                break;
+                            case "Literacy:":
+                                if (previous.text().equals("male:"))
+                                    societyBean.setMaleLiteracy( createDouble(
+                                            el.text().split(" ")[0].replace("%","") ));
+                                else if (previous.text().equals("female:"))
+                                    societyBean.setFemaleLiteracy( createDouble(
+                                            el.text().split(" ")[0].replace("%","") ));
+                                break;
+                            case "Unemployment, youth ages 15-24:":
+                                if (previous.text().equals("male:"))
+                                    societyBean.setMaleUnemployment( createDouble(
+                                            el.text().split(" ")[0].replace("%","") ));
+                                else if (previous.text().equals("female:"))
+                                    societyBean.setFemaleUnemployment( createDouble(
+                                            el.text().split(" ")[0].replace("%","") ));
+                                break;
+                        }
+
+
+//                        if(categoryTitle.equals("Infant mortality rate:") && previous.text().equals("male:"))
+//                            societyBean.setInfantMaleMortalityRatePer1K(createDouble(el.text().split(" ")[0]));
+//                        if(categoryTitle.equals("Infant mortality rate:") && previous.text().equals("female:"))
+//                            societyBean.setInfantFemaleMortalityRatePer1K(createDouble(el.text().split(" ")[0]));
+//
+//                        if(categoryTitle.equals("Life expectancy at birth:") && previous.text().equals("male:"))
+//                            societyBean.setMaleLifeExpectancy(createDouble(el.text().split(" ")[0]));
+//                        if(categoryTitle.equals("Life expectancy at birth:") && previous.text().equals("female:"))
+//                            societyBean.setFemaleLifeExpectancy(createDouble(el.text().split(" ")[0]));
+//
+//                        if(categoryTitle.equals("Literacy:") && previous.text().equals("male:"))
+//                            societyBean.setMaleLiteracy( createDouble(
+//                                    el.text().split(" ")[0].replace("%","") ));
+//
+//                        if(categoryTitle.equals("Literacy:") && previous.text().equals("female:"))
+//                            societyBean.setFemaleLiteracy( createDouble(
+//                                    el.text().split(" ")[0].replace("%","") ));
+//
+//                        if(categoryTitle.equals("School life expectancy (primary to tertiary education):")
+//                                && previous.text().equals("male:"))
+//                            societyBean.setMaleSchoolLifeExpectancy( createInt(
+//                                    el.text().split(" ")[0] ));
+//
+//                        if(categoryTitle.equals("School life expectancy (primary to tertiary education):")
+//                                && previous.text().equals("female:"))
+//                            societyBean.setFemaleSchoolLifeExpectancy( createInt(
+//                                    el.text().split(" ")[0] ));
+//
+//                        if(categoryTitle.equals("Unemployment, youth ages 15-24:") && previous.text().equals("male:"))
+//                            societyBean.setMaleUnemployment( createDouble(
+//                                    el.text().split(" ")[0].replace("%","") ));
+//                        if(categoryTitle.equals("Unemployment, youth ages 15-24:") && previous.text().equals("female:"))
+//                            societyBean.setFemaleUnemployment( createDouble(
+//                                    el.text().split(" ")[0].replace("%","") ));
+
+
+
+                        switch (previous.text()){
+                            case "Population:":
+                                if(countryName.equals("Zambia"))
+                                    societyBean.setPopulation(15972000);
+                                else
+                                    societyBean.setPopulation(createInt(removeParentheses(el.text())));
+                                break;
+                            case "0-14 years:":
+                                if(categoryTitle.equals("Age structure:")){
+                                    int[] stats = ageStrucProcessing(el.text());
+                                    societyBean.setMale0_14(stats[0]);
+                                    societyBean.setFemale0_14(stats[1]);
+                                }
+                                break;
+                            case "15-24 years:":
+                                if(categoryTitle.equals("Age structure:")){
+                                    int[] stats = ageStrucProcessing(el.text());
+                                    societyBean.setMale15_24(stats[0]);
+                                    societyBean.setFemale15_24(stats[1]);
+                                }
+                                break;
+                            case "25-54 years:":
+                                if(categoryTitle.equals("Age structure:")){
+                                    int[] stats = ageStrucProcessing(el.text());
+                                    societyBean.setMale25_54(stats[0]);
+                                    societyBean.setFemale25_54(stats[1]);
+                                }
+                                break;
+                            case "55-64 years:":
+                                if(categoryTitle.equals("Age structure:")){
+                                    int[] stats = ageStrucProcessing(el.text());
+                                    societyBean.setMale55_64(stats[0]);
+                                    societyBean.setFemale55_64(stats[1]);
+                                }
+                                break;
+                            case "65 years and over:":
+                                if(categoryTitle.equals("Age structure:")){
+                                    int[] stats = ageStrucProcessing(el.text());
+                                    societyBean.setMale65(stats[0]);
+                                    societyBean.setFemale65(stats[1]);
+                                }
+                                break;
+                            case "Population growth rate:":
+                                societyBean.setPopulationGrowthRate( createDouble(
+                                        el.text().split(" ")[0].replace("%","")
+                                ));
+                                break;
+                            case "Education expenditures:":
+                                societyBean.setEducationExpenditures( createDouble(
+                                        el.text().split(" ")[0].replace("%","")
+                                ));
+                                break;
+                            case "Birth rate:":
+                                societyBean.setBirthRatePer1K(createDouble(el.text().split(" ")[0]));
+                                break;
+                            case "Death rate:":
+                                societyBean.setDeathRatePer1K(createDouble(el.text().split(" ")[0]));
+                                break;
+                            case "Total fertility rate:":
+                                societyBean.setChildrenBornPerWoman(createDouble(el.text().split(" ")[0]));
+                                break;
+                            case "Net migration rate:":
+                                societyBean.setNetMigrationRate(createDouble(el.text().split(" ")[0]));
+                                break;
+                            case "Mother's mean age at first birth:":
+                                societyBean.setMotherMeanAgeAtFirstBirth(createDouble(el.text().split(" ")[0]));
+                                break;
+                            case "Maternal mortality rate:":
+                                societyBean.setMaternalMortalityRatePer100K(createInt(el.text().split(" ")[0]));
+                                break;
+                            case "degree of risk:":
+                                societyBean.setInfectiousDiseasesRisk(el.text());
+                                break;
+                            case "Contraceptive prevalence rate:":
+                                societyBean.setContraceptivePrevalencePCT( createDouble(
+                                        removeParentheses(el.text().replace("%","")) ) );
+                                break;
+                            case "Health expenditures:":
+                                societyBean.setHealthExpenditurePCT( createDouble(
+                                        el.text().split(" ")[0].replace("%","")) );
+                                break;
+                            case "Physicians density:":
+                                societyBean.setPhysiciansPer1K(createDouble(el.text().split(" ")[0]));
+                                break;
+                            case "Hospital bed density:":
+                                societyBean.setHospitalBedPer1K(createDouble(el.text().split(" ")[0]));
+                                break;
+                            default:
+                                ;
+
                         }
                         break;
                     default:
@@ -166,6 +324,7 @@ public class ParserMain {
         CountryMainManager.insert(countryBean);
 
         GeographyManager.insert(geoBean);
+        SocietyManager.insert(societyBean);
     }
 
     private static String singleCountryName(String tempName){
@@ -318,7 +477,6 @@ public class ParserMain {
         int flag = 0;
 
         for(int i = 0; i<str.length(); i++){
-            //char c = str.charAt(i);
             switch(str.charAt(i)){
                 case '(':
                     flag = 1;
@@ -328,6 +486,25 @@ public class ParserMain {
                     continue;
             }
             if(flag==0)
+                sb.append(str.charAt(i));
+        }
+        return sb.toString();
+    }
+
+    private static String extractParentheses(String str){
+
+        StringBuilder sb = new StringBuilder();
+        int flag = 0;
+
+        for(int i = 0; i<str.length(); i++){
+            switch(str.charAt(i)){
+                case '(':
+                    flag = 1;
+                    continue;
+                case ')':
+                    return sb.toString();
+            }
+            if(flag==1)
                 sb.append(str.charAt(i));
         }
         return sb.toString();
@@ -375,8 +552,16 @@ public class ParserMain {
             temp = Math.round(temp);
             result = (int)temp;
         }catch (NumberFormatException e){
-            System.out.println(number + " could not be formatted to integer");
+            //System.out.println(number + " could not be formatted to integer");
         }
         return result;
+    }
+
+    private static int[] ageStrucProcessing(String popData){
+        String[] stats = extractParentheses(popData).split("/");
+        return new int[]{
+                createInt(stats[0].split(" ")[1]),
+                createInt(stats[1].split(" ")[1])
+        };
     }
 }
