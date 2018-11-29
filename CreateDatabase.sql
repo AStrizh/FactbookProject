@@ -98,3 +98,26 @@ CREATE TABLE `society` (
 	`MaleUnemployment` Decimal( 3, 1 ),
 	`FemaleUnemployment` Decimal( 3, 1 )
 );
+
+CREATE TABLE `government` (
+    `Id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `CountryCode` CHAR(2) NOT NULL,
+	`GovernmentType` VARCHAR(255),
+    `CapitalLat` DECIMAL( 8, 1 ),
+    `CapitalLng` DECIMAL( 8, 1 ),
+	`TimeDifference` VARCHAR(10),
+	`DaylightSavingTime` VARCHAR(100),
+	`IndependenceDate` VARCHAR(15),
+	`NationalHoliday` VARCHAR(50),
+	`LegalSystem` TEXT,
+	`CitizenshipByBirth` BOOLEAN,
+	`CitizenshipByDescent` VARCHAR(255),
+	`DualCitizenship` BOOLEAN,
+	`Naturalization` VARCHAR(10),
+	`SuffrageAge` VARCHAR(25),
+	`SuffrageCompulsory` BOOLEAN
+	`ChiefOfState`  VARCHAR(100),
+	`HeadOfGovernment`  VARCHAR(100),
+	`DiplomatToUS`  VARCHAR(100),
+	`DiplomatFromUS`  VARCHAR(100)
+);
