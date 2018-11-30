@@ -275,23 +275,6 @@ public class ParserMain {
                         governmentBean.setCountryCode(countryCode);
 
                         switch (categoryTitle) {
-                            case "Citizenship:":
-                                if (previous.text().equals("citizenship by birth:")){
-                                    governmentBean.setCitizenshipByBirth(evalBool(el.text()));
-                                }
-
-                                else if (previous.text().equals("citizenship by descent only:")){
-                                    governmentBean.setCitizenshipByDescent(el.text());
-                                }
-
-                                else if (previous.text().equals("dual citizenship recognized:")){
-                                    governmentBean.setDualCitizenship(evalBool(el.text()));
-                                }
-
-                                else if (previous.text().equals("residency requirement for naturalization:")){
-                                    governmentBean.setNaturalization(el.text());
-                                }
-                                break;
                             case "Diplomatic representation in the US:":
                                 if( previous.text().equals("chief of mission:") ){
                                     String representative = el.text().split("[;,]")[0];
@@ -331,9 +314,8 @@ public class ParserMain {
                                 String suffrageAge = removeParentheses(suffrage[0]);
                                 governmentBean.setSuffrageAge(suffrageAge);
 
-                                if (suffrage.length > 1 && suffrage[1].contains("compulsory")){
+                                if (suffrage.length > 1 && suffrage[1].contains("compulsory"))
                                     governmentBean.setSuffrageCompulsory(true);
-                                }
                                 break;
                             case "time difference:":
                                 governmentBean.setTimeDifference(removeParentheses( el.text() ));
@@ -347,6 +329,18 @@ public class ParserMain {
                             case "Independence:":
                                 governmentBean.setIndependenceDate(el.text());
                                 break;
+
+                            case "citizenship by birth:":
+                                governmentBean.setCitizenshipByBirth(evalBool(el.text()));
+                                break;
+                            case "citizenship by descent only:":
+                                governmentBean.setCitizenshipByDescent(el.text());
+                                break;
+                            case "dual citizenship recognized:":
+                                governmentBean.setDualCitizenship(evalBool(el.text()));
+                                break;
+                            case "residency requirement for naturalization:":
+                                governmentBean.setNaturalization(el.text());
                             case "daylight saving time:":
                                 governmentBean.setDaylightSavingTime(el.text());
                                 break;
@@ -361,7 +355,6 @@ public class ParserMain {
                                     governmentBean.setCapitalLng(31.37);
                                 }
                                 break;
-
                             default:
                                 ;
                         }

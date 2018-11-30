@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c3fe19ef-2aa2-40ba-a46b-51dcb16a816b" name="Default Changelist" comment="Society table mostly finished">
-      <change beforePath="$PROJECT_DIR$/../CreateDatabase.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../CreateDatabase.sql" afterDir="false" />
+    <list default="true" id="c3fe19ef-2aa2-40ba-a46b-51dcb16a816b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DatabaseCreator/beans/Government.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DatabaseCreator/beans/Government.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/DatabaseCreator/parsers/ParserMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DatabaseCreator/parsers/ParserMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/GovernmentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/GovernmentManager.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -105,15 +102,15 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gradle" value="1" />
-          <entry key="java" value="12081" />
-          <entry key="txt" value="1382" />
+          <entry key="java" value="12134" />
+          <entry key="txt" value="1394" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="1" />
-          <entry key="JAVA" value="12074" />
-          <entry key="PLAIN_TEXT" value="1382" />
+          <entry key="JAVA" value="12127" />
+          <entry key="PLAIN_TEXT" value="1394" />
           <entry key="SQL" value="7" />
         </counts>
       </usages-collector>
@@ -152,12 +149,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/parsers/ParserMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-5220">
-              <caret line="357" column="33" lean-forward="true" selection-start-line="357" selection-start-column="33" selection-end-line="357" selection-end-column="33" />
+            <state relative-caret-position="215">
+              <caret line="277" selection-start-line="277" selection-end-line="277" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#27666#27667#0" expanded="true" />
-                <element signature="e#27724#27725#0" expanded="true" />
+                <element signature="e#27841#27842#0" expanded="true" />
+                <element signature="e#27899#27900#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -776,7 +773,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543619133844" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543620254731" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -865,7 +862,7 @@
       <workItem from="1541999447591" duration="8891000" />
       <workItem from="1542714082796" duration="5748000" />
       <workItem from="1543459411161" duration="6679000" />
-      <workItem from="1543596425881" duration="16186000" />
+      <workItem from="1543596425881" duration="17299000" />
     </task>
     <task id="LOCAL-00001" summary="Created JavaBeans to encapsulate database tables">
       <created>1540296120630</created>
@@ -1077,11 +1074,18 @@
       <option name="project" value="LOCAL" />
       <updated>1543460013438</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Government table finished">
+      <created>1543619180840</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1543619180840</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="140976000" />
+    <option name="totallyTimeSpent" value="142089000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1105,7 +1109,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.4284165" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4284165" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1170,7 +1174,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="Created CityManager to retrieve from City table" />
     <MESSAGE value="Use user default number formatting for population" />
     <MESSAGE value="CountryMain table now populated" />
     <MESSAGE value="City table now populated; needs bug fixing" />
@@ -1195,7 +1198,8 @@
     <MESSAGE value="Finished geography table" />
     <MESSAGE value="Society table mostly finished" />
     <MESSAGE value="Created Government and GovernmentManager and Government table sql" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created Government and GovernmentManager and Government table sql" />
+    <MESSAGE value="Government table finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="Government table finished" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/build.gradle">
@@ -1391,12 +1395,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/parsers/ParserMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5220">
-          <caret line="357" column="33" lean-forward="true" selection-start-line="357" selection-start-column="33" selection-end-line="357" selection-end-column="33" />
+        <state relative-caret-position="215">
+          <caret line="277" selection-start-line="277" selection-end-line="277" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#27666#27667#0" expanded="true" />
-            <element signature="e#27724#27725#0" expanded="true" />
+            <element signature="e#27841#27842#0" expanded="true" />
+            <element signature="e#27899#27900#0" expanded="true" />
           </folding>
         </state>
       </provider>
