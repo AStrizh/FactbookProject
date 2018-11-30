@@ -20,14 +20,13 @@ public class ParserMain {
 
     public static void mainParser( File countryFile) throws IOException {
 
-
-        //File input = new File(source + file.getName());
         Document doc = Jsoup.parse(countryFile, "UTF-8");
         Elements classes = doc.select("[class]");
 
         CountryMain countryBean = new CountryMain();
         Geography geoBean = new Geography();
         Society societyBean = new Society();
+        Government governmentBean = new Government();
 
         Element previous = null;
         String countryCode = null;
@@ -180,43 +179,6 @@ public class ParserMain {
                         }
 
 
-//                        if(categoryTitle.equals("Infant mortality rate:") && previous.text().equals("male:"))
-//                            societyBean.setInfantMaleMortalityRatePer1K(createDouble(el.text().split(" ")[0]));
-//                        if(categoryTitle.equals("Infant mortality rate:") && previous.text().equals("female:"))
-//                            societyBean.setInfantFemaleMortalityRatePer1K(createDouble(el.text().split(" ")[0]));
-//
-//                        if(categoryTitle.equals("Life expectancy at birth:") && previous.text().equals("male:"))
-//                            societyBean.setMaleLifeExpectancy(createDouble(el.text().split(" ")[0]));
-//                        if(categoryTitle.equals("Life expectancy at birth:") && previous.text().equals("female:"))
-//                            societyBean.setFemaleLifeExpectancy(createDouble(el.text().split(" ")[0]));
-//
-//                        if(categoryTitle.equals("Literacy:") && previous.text().equals("male:"))
-//                            societyBean.setMaleLiteracy( createDouble(
-//                                    el.text().split(" ")[0].replace("%","") ));
-//
-//                        if(categoryTitle.equals("Literacy:") && previous.text().equals("female:"))
-//                            societyBean.setFemaleLiteracy( createDouble(
-//                                    el.text().split(" ")[0].replace("%","") ));
-//
-//                        if(categoryTitle.equals("School life expectancy (primary to tertiary education):")
-//                                && previous.text().equals("male:"))
-//                            societyBean.setMaleSchoolLifeExpectancy( createInt(
-//                                    el.text().split(" ")[0] ));
-//
-//                        if(categoryTitle.equals("School life expectancy (primary to tertiary education):")
-//                                && previous.text().equals("female:"))
-//                            societyBean.setFemaleSchoolLifeExpectancy( createInt(
-//                                    el.text().split(" ")[0] ));
-//
-//                        if(categoryTitle.equals("Unemployment, youth ages 15-24:") && previous.text().equals("male:"))
-//                            societyBean.setMaleUnemployment( createDouble(
-//                                    el.text().split(" ")[0].replace("%","") ));
-//                        if(categoryTitle.equals("Unemployment, youth ages 15-24:") && previous.text().equals("female:"))
-//                            societyBean.setFemaleUnemployment( createDouble(
-//                                    el.text().split(" ")[0].replace("%","") ));
-
-
-
                         switch (previous.text()){
                             case "Population:":
                                 if(countryName.equals("Zambia"))
@@ -309,6 +271,101 @@ public class ParserMain {
 
                         }
                         break;
+                    case "Government":
+                        governmentBean.setCountryCode(countryCode);
+
+                        switch (categoryTitle) {
+                            case "Citizenship:":
+                                if (previous.text().equals("citizenship by birth:")){
+                                    governmentBean.setCitizenshipByBirth(evalBool(el.text()));
+                                }
+
+                                else if (previous.text().equals("citizenship by descent only:")){
+                                    governmentBean.setCitizenshipByDescent(el.text());
+                                }
+
+                                else if (previous.text().equals("dual citizenship recognized:")){
+                                    governmentBean.setDualCitizenship(evalBool(el.text()));
+                                }
+
+                                else if (previous.text().equals("residency requirement for naturalization:")){
+                                    governmentBean.setNaturalization(el.text());
+                                }
+                                break;
+                            case "Diplomatic representation in the US:":
+                                if( previous.text().equals("chief of mission:") ){
+                                    String representative = el.text().split("[;,]")[0];
+                                    if(representative.contains("(vacant)"))
+                                        governmentBean.setDiplomatToUS("VACANT");
+                                    else
+                                        governmentBean.setDiplomatToUS(removeParentheses(representative));
+                                }
+                                break;
+
+                            case "Diplomatic representation from the US:":
+                                if( previous.text().equals("chief of mission:") ){
+                                    String representative = el.text().split("[;,]")[0];
+                                    if(representative.contains("(vacant)"))
+                                        governmentBean.setDiplomatFromUS("VACANT");
+                                    else
+                                        governmentBean.setDiplomatFromUS(removeParentheses(representative));
+                                }
+                                break;
+                            default:
+                                ;
+                        }
+
+                        switch (previous.text()) {
+                            case "Government type:":
+                                governmentBean.setGovernmentType(el.text());
+                                break;
+                            case "chief of state:":
+                                governmentBean.setChiefOfState( removeParentheses(el.text().split("[;,]")[0]) );
+                                break;
+                            case "head of government:":
+                                String head = removeParentheses( el.text().split("; |,")[0] );
+                                governmentBean.setHeadOfGovernment(head);
+                                break;
+                            case "Suffrage:":
+                                String[] suffrage = el.text().split("; |,");
+                                String suffrageAge = removeParentheses(suffrage[0]);
+                                governmentBean.setSuffrageAge(suffrageAge);
+
+                                if (suffrage.length > 1 && suffrage[1].contains("compulsory")){
+                                    governmentBean.setSuffrageCompulsory(true);
+                                }
+                                break;
+                            case "time difference:":
+                                governmentBean.setTimeDifference(removeParentheses( el.text() ));
+                                break;
+                            case "Legal system:":
+                                governmentBean.setLegalSystem(el.text());
+                                break;
+                            case "National holiday:":
+                                governmentBean.setNationalHoliday(el.text());
+                                break;
+                            case "Independence:":
+                                governmentBean.setIndependenceDate(el.text());
+                                break;
+                            case "daylight saving time:":
+                                governmentBean.setDaylightSavingTime(el.text());
+                                break;
+                            case "geographic coordinates:":
+                                if(!countryCode.equals("OD")){
+                                    String[] capitalLoc = parseGeoCords(el.text());
+                                    governmentBean.setCapitalLat(createDouble(capitalLoc[0]));
+                                    governmentBean.setCapitalLng(createDouble(capitalLoc[1]));
+                                }
+                                else {
+                                    governmentBean.setCapitalLat(04.51);
+                                    governmentBean.setCapitalLng(31.37);
+                                }
+                                break;
+
+                            default:
+                                ;
+                        }
+                        break;
                     default:
                         ;
                 }
@@ -325,6 +382,7 @@ public class ParserMain {
 
         GeographyManager.insert(geoBean);
         SocietyManager.insert(societyBean);
+        GovernmentManager.insert(governmentBean);
     }
 
     private static String singleCountryName(String tempName){
@@ -355,7 +413,6 @@ public class ParserMain {
 
         return countryName;
     }
-
 
     private static String[] processElevation(String elevation){
         String[] elevArray = elevation.split("  | ");
@@ -488,7 +545,7 @@ public class ParserMain {
             if(flag==0)
                 sb.append(str.charAt(i));
         }
-        return sb.toString();
+        return sb.toString().trim();
     }
 
     private static String extractParentheses(String str){
@@ -563,5 +620,9 @@ public class ParserMain {
                 createInt(stats[0].split(" ")[1]),
                 createInt(stats[1].split(" ")[1])
         };
+    }
+
+    private static Boolean evalBool(String yesNo){
+        return (yesNo.toUpperCase().equals("YES"));
     }
 }

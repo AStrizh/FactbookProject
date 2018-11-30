@@ -16,6 +16,8 @@ public class Government  implements Serializable {
     private String nationalHoliday;
     private String legalSystem;
     private Boolean citizenshipByBirth;
+    //private String citizenshipByBirth;
+
     private String citizenshipByDescent;
     private Boolean dualCitizenship;
     private String naturalization;
@@ -113,6 +115,15 @@ public class Government  implements Serializable {
     public void setCitizenshipByBirth(Boolean citizenshipByBirth) {
         this.citizenshipByBirth = citizenshipByBirth;
     }
+
+
+//    public String getCitizenshipByBirth() {
+//        return citizenshipByBirth;
+//    }
+//
+//    public void setCitizenshipByBirth(String citizenshipByBirth) {
+//        this.citizenshipByBirth = citizenshipByBirth;
+//    }
 
     public String getCitizenshipByDescent() {
         return citizenshipByDescent;
