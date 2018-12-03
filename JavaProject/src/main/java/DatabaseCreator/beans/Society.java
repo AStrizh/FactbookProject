@@ -1,6 +1,10 @@
 package DatabaseCreator.beans;
 
-public class Society {
+import java.io.Serializable;
+
+public class Society implements Serializable {
+
+    private static final long serialVersionUID = -5168918568674715764L;
     private int id;
     private String countryCode;
     private int population;
@@ -14,6 +18,7 @@ public class Society {
     private int Female55_64;
     private int Male65;
     private int Female65;
+
     private double youthDependencyRatio;
     private double elderlyDependencyRatio;
     private double potentialSupportRatio;
@@ -36,6 +41,7 @@ public class Society {
     private double healthExpenditurePCT;
     private double physiciansPer1K;
     private double hospitalBedPer1K;
+
     private double improvedUrbanDrinkingWaterPCT;
     private double improvedRuralDrinkingWaterPCT;
     private double improvedUrbanSanitationFacilityAccessPCT;

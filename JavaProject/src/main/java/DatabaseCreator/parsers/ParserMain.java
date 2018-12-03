@@ -329,7 +329,6 @@ public class ParserMain {
                             case "Independence:":
                                 governmentBean.setIndependenceDate(el.text());
                                 break;
-
                             case "citizenship by birth:":
                                 governmentBean.setCitizenshipByBirth(evalBool(el.text()));
                                 break;
