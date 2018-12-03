@@ -12,6 +12,7 @@ public class Economy implements Serializable {
     private double gDPOfficialExchangeRate;
     private double gDPRealGrowthRate;
     private int gDPPerCapita;
+
     private double grossNationalSaving;
     private double householdConsumption;
     private double governmentConsumption;
@@ -26,6 +27,7 @@ public class Economy implements Serializable {
     private String industries;
     private double industrialGrowth;
     private int laborForce;
+
     private double occupationAgriculture;
     private double occupationIndustry;
     private double occupationServices;
@@ -41,6 +43,7 @@ public class Economy implements Serializable {
     private double publicDebt;
     private String fiscalYear;
     private double inflation;
+
     private double centralBankDiscount;
     private double commercialBankLending;
     private double narrowMoney;
@@ -52,6 +55,7 @@ public class Economy implements Serializable {
     private double exportsCommodities;
     private String exportsPartners;
     private double importsTotal;
+
     private String importsCommodities;
     private double importsPartners;
     private double foreignGoldReserves;
@@ -85,35 +89,35 @@ public class Economy implements Serializable {
         this.overview = overview;
     }
 
-    public double getgDPPurchasingPowerParity() {
+    public double getGDPPurchasingPowerParity() {
         return gDPPurchasingPowerParity;
     }
 
-    public void setgDPPurchasingPowerParity(double gDPPurchasingPowerParity) {
+    public void setGDPPurchasingPowerParity(double gDPPurchasingPowerParity) {
         this.gDPPurchasingPowerParity = gDPPurchasingPowerParity;
     }
 
-    public double getgDPOfficialExchangeRate() {
+    public double getGDPOfficialExchangeRate() {
         return gDPOfficialExchangeRate;
     }
 
-    public void setgDPOfficialExchangeRate(double gDPOfficialExchangeRate) {
+    public void setGDPOfficialExchangeRate(double gDPOfficialExchangeRate) {
         this.gDPOfficialExchangeRate = gDPOfficialExchangeRate;
     }
 
-    public double getgDPRealGrowthRate() {
+    public double getGDPRealGrowthRate() {
         return gDPRealGrowthRate;
     }
 
-    public void setgDPRealGrowthRate(double gDPRealGrowthRate) {
+    public void setGDPRealGrowthRate(double gDPRealGrowthRate) {
         this.gDPRealGrowthRate = gDPRealGrowthRate;
     }
 
-    public int getgDPPerCapita() {
+    public int getGDPPerCapita() {
         return gDPPerCapita;
     }
 
-    public void setgDPPerCapita(int gDPPerCapita) {
+    public void setGDPPerCapita(int gDPPerCapita) {
         this.gDPPerCapita = gDPPerCapita;
     }
 
@@ -173,27 +177,27 @@ public class Economy implements Serializable {
         this.imports = imports;
     }
 
-    public double getgDPAgriculture() {
+    public double getGDPAgriculture() {
         return gDPAgriculture;
     }
 
-    public void setgDPAgriculture(double gDPAgriculture) {
+    public void setGDPAgriculture(double gDPAgriculture) {
         this.gDPAgriculture = gDPAgriculture;
     }
 
-    public double getgDPIndustry() {
+    public double getGDPIndustry() {
         return gDPIndustry;
     }
 
-    public void setgDPIndustry(double gDPIndustry) {
+    public void setGDPIndustry(double gDPIndustry) {
         this.gDPIndustry = gDPIndustry;
     }
 
-    public double getgDPServices() {
+    public double getGDPServices() {
         return gDPServices;
     }
 
-    public void setgDPServices(double gDPServices) {
+    public void setGDPServices(double gDPServices) {
         this.gDPServices = gDPServices;
     }
 
