@@ -3,14 +3,11 @@ package DatabaseCreator.parsers;
 
 import java.io.*;
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.regex.Pattern;
 
 import DatabaseCreator.beans.*;
 import DatabaseCreator.tables.*;
-import DatabaseCreator.util.ConnectionManager;
 import org.jsoup.*;
 import org.jsoup.nodes.*;
 import org.jsoup.select.*;
@@ -27,6 +24,7 @@ public class ParserMain {
         Geography geoBean = new Geography();
         Society societyBean = new Society();
         Government governmentBean = new Government();
+        Economy economyBean = new Economy();
 
         Element previous = null;
         String countryCode = null;
@@ -35,6 +33,7 @@ public class ParserMain {
         String sectionTitle = "";
         String categoryTitle = "";
         String introduction = "";
+        String econOverview = "";
 
         //Pulls data from relevant html tags
         for( Element el : classes){
@@ -358,6 +357,230 @@ public class ParserMain {
                                 ;
                         }
                         break;
+
+                    case "Economy":
+                        economyBean.setCountryCode(countryCode);
+
+                        switch (categoryTitle) {
+                            case "Exchange rates:":
+
+                                if(countryCode.equals("CY")){
+                                    if(economyBean.getCurrencyText() == null){
+                                        economyBean.setCurrencyText("euros (EUR) per US dollar -");
+                                        economyBean.setExchangeRate(0.9214);
+                                    }
+                                }
+
+                                else if(el.text().contains("per US dollar"))
+                                    economyBean.setCurrencyText(el.text());
+
+                                else if(el.text().contains("2016"))
+                                    economyBean.setExchangeRate(createDouble( removeParentheses(el.text()) ));
+
+                                break;
+
+                            case "Economy - overview:":
+                                econOverview = econOverview + el.text() + "\n";
+                                break;
+
+                            case "GDP - composition, by sector of origin:":
+                                switch ( previous.text()){
+                                    case "agriculture:":
+                                        economyBean.setGDPAgriculture(createDouble(
+                                                el.text().replace("%","") ));
+                                        break;
+                                    case "industry:":
+                                        economyBean.setGDPIndustry(createDouble(
+                                                el.text().replace("%","") ));
+                                        break;
+                                    case "services:":
+                                        economyBean.setGDPServices(createDouble(removeParentheses(
+                                                el.text().replace("%","") )));
+                                        break;
+                                    default:
+                                        ;
+                                }
+                                break;
+
+                            case "Labor force - by occupation:":
+                                switch ( previous.text()){
+                                    case "agriculture:":
+                                        economyBean.setOccupationAgriculture(createDouble(
+                                                el.text().replace("%","") ));
+                                        break;
+                                    case "industry:":
+                                        economyBean.setOccupationIndustry(createDouble(
+                                                el.text().replace("%","") ));
+                                        break;
+                                    case "services:":
+                                        economyBean.setOccupationServices(createDouble(removeParentheses(
+                                                el.text().replace("%","") )));
+                                        break;
+                                    default:
+                                        ;
+                                }
+                                break;
+
+                            case "Household income or consumption by percentage share:":
+                                if(previous.text().equals("lowest 10%:"))
+                                    economyBean.setLowest10PCTConsumption(createDouble(
+                                            el.text().replace("%","") ));
+
+                                else if(previous.text().equals("highest 10%:"))
+                                    economyBean.setHighest10PCTConsumption(createDouble(removeParentheses(
+                                        el.text().replace("%","") )));
+
+                                break;
+                            default:
+                                ;
+
+                        }
+
+                        switch (previous.text()) {
+
+                            case "GDP (purchasing power parity):":
+                                economyBean.setGDPPurchasingPowerParity( processValue(el.text()) );
+                                break;
+                            case "GDP (official exchange rate):":
+                                economyBean.setGDPOfficialExchangeRate( processValue(el.text()) );
+                                break;
+                            case "GDP - real growth rate:":
+                                economyBean.setGDPRealGrowthRate( createDouble(
+                                        removeParentheses(el.text()).split("%")[0] ));
+                                break;
+                            case "GDP - per capita (PPP):":
+                                String amount = removeParentheses(el.text()).replace("$","");
+                                economyBean.setGDPPerCapita(createInt(amount));
+                                break;
+                            case "Gross national saving:":
+                                economyBean.setGrossNationalSaving( createDouble(el.text().split("%")[0]) );
+                                break;
+                            case "household consumption:":
+                                economyBean.setHouseholdConsumption(createDouble(
+                                        el.text().replace("%","")) );
+                                break;
+                            case "government consumption:":
+                                economyBean.setGovernmentConsumption(createDouble(
+                                        el.text().replace("%","")) );
+                                break;
+                            case "investment in fixed capital:":
+                                economyBean.setInvestmentFixedCapital(createDouble(
+                                        el.text().replace("%","")) );
+                                break;
+                            case "investment in inventories:":
+                                economyBean.setInvestmentInventories(createDouble(
+                                        el.text().replace("%","")) );
+                                break;
+                            case "exports of goods and services:":
+                                economyBean.setExports(createDouble(
+                                        el.text().replace("%","")) );
+                                break;
+                            case "imports of goods and services:":
+                                economyBean.setImports(createDouble(removeParentheses(
+                                        el.text().replace("%","") )));
+                                break;
+                            case "Agriculture - products:":
+                                economyBean.setAgricultureProducts( el.text() );
+                                break;
+                            case "Industries:":
+                                economyBean.setIndustries( el.text() );
+                                break;
+                            case "Industrial production growth rate:":
+                                economyBean.setIndustrialGrowth(createDouble(removeParentheses(
+                                        el.text().replace("%","") )));
+                                break;
+                            case "Labor force:":
+                                economyBean.setLaborForce(formatPopulation(removeParentheses(
+                                        el.text() )));
+                                break;
+                            case "Unemployment rate:":
+                                economyBean.setUnemploymentRate(createDouble(removeParentheses(
+                                        el.text().replace("%","") )));
+                                break;
+                            case "Population below poverty line:":
+                                economyBean.setBelowPovertyLine(createDouble(removeParentheses(
+                                        el.text().replace("%","") )));
+                                break;
+                            case "Distribution of family income - Gini index:":
+                                economyBean.setGiniIndexIncome(createDouble(removeParentheses(el.text() )));
+                                break;
+                            case "revenues:":
+                                economyBean.setRevenues( processValue(el.text()) );
+                                break;
+                            case "expenditures:":
+                                economyBean.setExpenditures( processValue( removeParentheses(el.text()) ));
+                                break;
+                            case "Taxes and other revenues:":
+                                economyBean.setTaxes(createDouble( el.text().split("%")[0]));
+                                break;
+                            case "Budget surplus (+) or deficit (-):":
+                                economyBean.setBudgetSurplus(createDouble( el.text().split("%")[0] ));
+                                break;
+                            case "Public debt:":
+                                economyBean.setPublicDebt(createDouble( el.text().split("%")[0] ));
+                                break;
+                            case "Fiscal year:":
+                                economyBean.setFiscalYear(el.text());
+                                break;
+                            case "Inflation rate (consumer prices):":
+                                economyBean.setInflation(createDouble( el.text().split("%")[0] ));
+                                break;
+                            case "Central bank discount rate:":
+                                economyBean.setCentralBankDiscount(createDouble( el.text().split("%")[0] ));
+                                break;
+                            case "Commercial bank prime lending rate:":
+                                economyBean.setCommercialBankLending( createDouble( el.text().split("%")[0] ) );
+                                break;
+                            case "Stock of narrow money:":
+                                economyBean.setNarrowMoney(processValue(removeParentheses( el.text() )));
+                                break;
+                            case "Stock of broad money:":
+                                economyBean.setBroadMoney(processValue(removeParentheses( el.text() )));
+                                break;
+                            case "Stock of domestic credit:":
+                                economyBean.setDomesticCredit(processValue(removeParentheses( el.text() )));
+                                break;
+                            case "Market value of publicly traded shares:":
+                                economyBean.setValueTradedShares(processValue(removeParentheses( el.text() )));
+                                break;
+                            case "Current account balance:":
+                                economyBean.setCurrentAccountBalance(processValue(removeParentheses( el.text() )));
+                                break;
+                            case "Exports:":
+                                economyBean.setExportsTotal(processValue(removeParentheses( el.text() )));
+                                break;
+                            case "Exports - commodities:":
+                                economyBean.setExportsCommodities(el.text());
+                                break;
+                            case "Exports - partners:":
+                                economyBean.setExportsPartners(el.text());
+                                break;
+                            case "Imports:":
+                                economyBean.setImportsTotal(processValue(removeParentheses( el.text() )));
+                                break;
+                            case "Imports - commodities:":
+                                economyBean.setImportsCommodities(el.text());
+                                break;
+                            case "Imports - partners:":
+                                economyBean.setImportsPartners(el.text());
+                                break;
+                            case "Reserves of foreign exchange and gold:":
+                                economyBean.setForeignGoldReserves(processValue(removeParentheses( el.text() )));
+                                break;
+                            case "Debt - external:":
+                                economyBean.setDebtExternal(processValue(removeParentheses( el.text() )));
+                                break;
+                            case "Stock of direct foreign investment - at home:":
+                                economyBean.setForeignInvestmentHome(processValue(removeParentheses( el.text() )));
+                                break;
+                            case "Stock of direct foreign investment - abroad:":
+                                economyBean.setForeignInvestmentAbroad(processValue(removeParentheses( el.text() )));
+                                break;
+                            default:
+                                ;
+                        }
+                        break;
+
                     default:
                         ;
                 }
@@ -370,11 +593,13 @@ public class ParserMain {
         countryBean.setCountryName(countryName);
         countryBean.setRegion(region);
         countryBean.setIntroduction(introduction);
-        CountryMainManager.insert(countryBean);
+        economyBean.setOverview(econOverview);
 
+        CountryMainManager.insert(countryBean);
         GeographyManager.insert(geoBean);
         SocietyManager.insert(societyBean);
         GovernmentManager.insert(governmentBean);
+        EconomyManager.insert(economyBean);
     }
 
     private static String singleCountryName(String tempName){
@@ -587,10 +812,50 @@ public class ParserMain {
             result = Double.parseDouble(number.replace(",",""));
         }
         catch(NumberFormatException e) {
-            //System.out.println(number + " could not be formatted to double");
+            if(!number.equals("NA")){
+                //System.out.println(number + " could not be formatted to double");
+            }
         }
 
         return result;
+    }
+
+    private static double processValue(String amount){
+
+        String[] ftamount = removeParentheses(amount).replace("$","").split(" ");
+
+        double value = createDouble(ftamount[0]);
+        if(ftamount.length > 1){
+            switch (ftamount[1]){
+                case "million":
+                    value = value * 1000000d;
+                    break;
+                case "billion":
+                    value = value * 1000000000d;
+                    break;
+                case "trillion":
+                    value = value * 1000000000000d;
+                    break;
+                default:
+                    ;
+            }
+        }
+
+        return value;
+    }
+
+    private static int formatPopulation(String people){
+
+        String[] peps = removeParentheses(people).split(" ");
+        double amount = createDouble( peps[0] );
+        if(peps.length > 1){
+            switch (peps[1]) {
+                case "million":
+                    amount = amount * 1000000;
+                    break;
+            }
+        }
+        return (int)amount;
     }
 
     private static int createInt(String number){
@@ -601,7 +866,9 @@ public class ParserMain {
             temp = Math.round(temp);
             result = (int)temp;
         }catch (NumberFormatException e){
-            //System.out.println(number + " could not be formatted to integer");
+            if(!number.equals("NA")){
+                //System.out.println(number + " could not be formatted to integer");
+            }
         }
         return result;
     }

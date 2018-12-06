@@ -23,7 +23,7 @@ public class EconomyManager {
                 "centralBankDiscount, commercialBankLending, narrowMoney, broadMoney, domesticCredit, " +
                 "valueTradedShares, currentAccountBalance, exportsTotal, exportsCommodities, exportsPartners, " +
                 "importsTotal, importsCommodities, importsPartners, foreignGoldReserves, debtExternal, " +
-                "foreignInvestmentHome, foreignInvestmentAbroad, currencyString, exchangeRate) " +
+                "foreignInvestmentHome, foreignInvestmentAbroad, currencyText, exchangeRate) " +
 
                 "VALUES (?, ?, ?, ?, ?, " + "?, ?, ?, ?, ?, " + "?, ?, ?, ?, ?, " +
                 "?, ?, ?, ?, ?, " + "?, ?, ?, ?, ?, " + "?, ?, ?, ?, ?, " +
@@ -77,16 +77,16 @@ public class EconomyManager {
             stmt.setDouble(41, bean.getValueTradedShares());
             stmt.setDouble(42, bean.getCurrentAccountBalance());
             stmt.setDouble(43, bean.getExportsTotal());
-            stmt.setDouble(44, bean.getExportsCommodities());
+            stmt.setString(44, bean.getExportsCommodities());
             stmt.setString(45, bean.getExportsPartners());
             stmt.setDouble(46, bean.getImportsTotal());
             stmt.setString(47, bean.getImportsCommodities());
-            stmt.setDouble(48, bean.getImportsPartners());
+            stmt.setString(48, bean.getImportsPartners());
             stmt.setDouble(49, bean.getForeignGoldReserves());
             stmt.setDouble(50, bean.getDebtExternal());
             stmt.setDouble(51, bean.getForeignInvestmentHome());
             stmt.setDouble(52, bean.getForeignInvestmentAbroad());
-            stmt.setString(53, bean.getCurrencyString());
+            stmt.setString(53, bean.getCurrencyText());
             stmt.setDouble(54, bean.getExchangeRate());
 
 

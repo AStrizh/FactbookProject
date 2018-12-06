@@ -52,17 +52,17 @@ public class Economy implements Serializable {
     private double valueTradedShares;
     private double currentAccountBalance;
     private double exportsTotal;
-    private double exportsCommodities;
+    private String exportsCommodities;
     private String exportsPartners;
     private double importsTotal;
 
     private String importsCommodities;
-    private double importsPartners;
+    private String importsPartners;
     private double foreignGoldReserves;
     private double debtExternal;
     private double foreignInvestmentHome;
     private double foreignInvestmentAbroad;
-    private String currencyString;
+    private String currencyText;
     private double exchangeRate;
 
     public int getId() {
@@ -417,11 +417,11 @@ public class Economy implements Serializable {
         this.exportsTotal = exportsTotal;
     }
 
-    public double getExportsCommodities() {
+    public String getExportsCommodities() {
         return exportsCommodities;
     }
 
-    public void setExportsCommodities(double exportsCommodities) {
+    public void setExportsCommodities(String exportsCommodities) {
         this.exportsCommodities = exportsCommodities;
     }
 
@@ -449,11 +449,11 @@ public class Economy implements Serializable {
         this.importsCommodities = importsCommodities;
     }
 
-    public double getImportsPartners() {
+    public String getImportsPartners() {
         return importsPartners;
     }
 
-    public void setImportsPartners(double importsPartners) {
+    public void setImportsPartners(String importsPartners) {
         this.importsPartners = importsPartners;
     }
 
@@ -489,12 +489,12 @@ public class Economy implements Serializable {
         this.foreignInvestmentAbroad = foreignInvestmentAbroad;
     }
 
-    public String getCurrencyString() {
-        return currencyString;
+    public String getCurrencyText() {
+        return currencyText;
     }
 
-    public void setCurrencyString(String currencyString) {
-        this.currencyString = currencyString;
+    public void setCurrencyText(String currencyText) {
+        this.currencyText = currencyText;
     }
 
     public double getExchangeRate() {
