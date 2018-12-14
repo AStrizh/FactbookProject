@@ -133,7 +133,7 @@ public class ParserMain {
                     case "People and Society":
                         societyBean.setCountryCode(countryCode);
 
-                        if(categoryTitle.contains("Major urban areas")){
+                        if(categoryTitle.contains("Major urban areas") && !previous.text().equals("note:")){
 
                             ArrayList<City> cityBeans = processCities(el.text().split(";"), countryCode);
                             for(City city : cityBeans)
@@ -413,8 +413,9 @@ public class ParserMain {
                                                 el.text().replace("%","") ));
                                         break;
                                     case "services:":
-                                        economyBean.setOccupationServices(createDouble(removeParentheses(
-                                                el.text().replace("%","") )));
+                                        double occupationServices = createDouble( el.text().split("%")[0]);
+                                        if(occupationServices < 100.0)
+                                            economyBean.setOccupationServices(occupationServices);
                                         break;
                                     default:
                                         ;
@@ -511,7 +512,9 @@ public class ParserMain {
                                 economyBean.setExpenditures( processValue( removeParentheses(el.text()) ));
                                 break;
                             case "Taxes and other revenues:":
-                                economyBean.setTaxes(createDouble( el.text().split("%")[0]));
+                                double taxes = createDouble( el.text().split("%")[0]);
+                                if(taxes < 100.0)
+                                    economyBean.setTaxes(taxes);
                                 break;
                             case "Budget surplus (+) or deficit (-):":
                                 economyBean.setBudgetSurplus(createDouble( el.text().split("%")[0] ));

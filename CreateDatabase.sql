@@ -180,4 +180,36 @@ CREATE TABLE `economy` (
 	`ExchangeRate` Decimal( 13, 5 )
 )
 
+CREATE TABLE `energy` (
+	`Id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`CountryCode` CHAR(2),
+	`WithoutElectricity` INT,
+	`ElectrificationPopulationPCT` DECIMAL( 4, 1 ),
+	`ElectrificationUrbanPCT` DECIMAL( 4, 1 ),
+	`ElectrificationRuralPCT` DECIMAL( 4, 1 ),
+	`ElectricityProductionMillionskWh` INT,
+	`ElectricityConsumptionMillionskWh` INT,
+	`ElectricityExportsMillionskWh` INT,
+	`ElectricityImportsMillionskWh` INT,
+	`ElectricityCapacityThousandskW` INT,
+	`ElectricityFossilFuelsPCT` DECIMAL( 4, 1 ),
+	`ElectricityNuclearFuelsPCT` DECIMAL( 3, 1 ),
+	`ElectricityHydroelectricPlantsPCT` DECIMAL( 4, 1 ),
+	`ElectricityOtherRenewableSourcesPCT` DECIMAL( 3, 1 ), 
+	`OilProductionBarrelsPerDay` INT,
+	`OilExportsBarrelsPerDay` Int,
+	`OilImportsBarrelsPerDay` INT,
+	`OilProvedReservesThousandBarrels` INT,	
+	`RefinedPetroleumProductionBarrelsPerDay` INT,
+	`RefinedPetroleumConsumptionBarrelsPerDay` INT,
+	`RefinedPetroleumExportsBarrelsPerDay` INT,
+	`RefinedPetroleumImportsBarrelsPerDay` INT,
+	`NaturalGasProductionMillionCubicMeters` INT,
+	`NaturalGasConsumptionMillionCubicMeters` INT,
+	`NaturalGasExportsMillionCubicMeters` INT,
+	`NaturalGasImportsMillionCubicMeters` INT,
+	`NaturalGasProvedReservesMillionCubicMeters` INT,
+	`CarbonDioxideEmissionsMillionMetricTons` INT
+)
+
 
