@@ -25,7 +25,7 @@ public class Energy implements Serializable {
     private int oilProductionBarrelsPerDay;
     private int oilExportsBarrelsPerDay;
     private int oilImportsBarrelsPerDay;
-    private int oilProvedReservesThousandBarrels;
+    private int oilProvedReservesThousandsBarrels;
     private int refinedPetroleumProductionBarrelsPerDay;
     private int refinedPetroleumConsumptionBarrelsPerDay;
     private int refinedPetroleumExportsBarrelsPerDay;
@@ -36,7 +36,7 @@ public class Energy implements Serializable {
     private int naturalGasExportsMillionCubicMeters;
     private int naturalGasImportsMillionCubicMeters;
     private int naturalGasProvedReservesMillionCubicMeters;
-    private int carbonDioxideEmissionsMillionMetricTons;
+    private int carbonDioxideEmissionsThousandsMetricTons;
 
 
     public int getId() {
@@ -183,12 +183,12 @@ public class Energy implements Serializable {
         this.oilImportsBarrelsPerDay = oilImportsBarrelsPerDay;
     }
 
-    public int getOilProvedReservesThousandBarrels() {
-        return oilProvedReservesThousandBarrels;
+    public int getOilProvedReservesThousandsBarrels() {
+        return oilProvedReservesThousandsBarrels;
     }
 
-    public void setOilProvedReservesThousandBarrels(int oilProvedReservesThousandBarrels) {
-        this.oilProvedReservesThousandBarrels = oilProvedReservesThousandBarrels;
+    public void setOilProvedReservesThousandsBarrels(int oilProvedReservesThousandsBarrels) {
+        this.oilProvedReservesThousandsBarrels = oilProvedReservesThousandsBarrels;
     }
 
     public int getRefinedPetroleumProductionBarrelsPerDay() {
@@ -263,11 +263,11 @@ public class Energy implements Serializable {
         this.naturalGasProvedReservesMillionCubicMeters = naturalGasProvedReservesMillionCubicMeters;
     }
 
-    public int getCarbonDioxideEmissionsMillionMetricTons() {
-        return carbonDioxideEmissionsMillionMetricTons;
+    public int getCarbonDioxideEmissionsThousandsMetricTons() {
+        return carbonDioxideEmissionsThousandsMetricTons;
     }
 
-    public void setCarbonDioxideEmissionsMillionMetricTons(int carbonDioxideEmissionsMillionMetricTons) {
-        this.carbonDioxideEmissionsMillionMetricTons = carbonDioxideEmissionsMillionMetricTons;
+    public void setCarbonDioxideEmissionsThousandsMetricTons(int carbonDioxideEmissionsThousandsMetricTons) {
+        this.carbonDioxideEmissionsThousandsMetricTons = carbonDioxideEmissionsThousandsMetricTons;
     }
 }

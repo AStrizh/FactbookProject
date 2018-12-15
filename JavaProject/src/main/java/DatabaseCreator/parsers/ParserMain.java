@@ -25,6 +25,7 @@ public class ParserMain {
         Society societyBean = new Society();
         Government governmentBean = new Government();
         Economy economyBean = new Economy();
+        Energy energyBean = new Energy();
 
         Element previous = null;
         String countryCode = null;
@@ -584,6 +585,96 @@ public class ParserMain {
                         }
                         break;
 
+                    case "Energy":
+                        energyBean.setCountryCode(countryCode);
+
+                        switch (previous.text()) {
+                            case "population without electricity:":
+                                energyBean.setWithoutElectricity(createInt(el.text()));
+                                break;
+                            case "electrification - total population:":
+                                energyBean.setElectrificationPopulationPCT(createDouble( el.text().split("%")[0] ));
+                                break;
+                            case "electrification - urban areas:":
+                                energyBean.setElectrificationUrbanPCT(createDouble( el.text().split("%")[0] ));
+                            case "electrification - rural areas:":
+                                energyBean.setElectrificationRuralPCT(createDouble( el.text().split("%")[0] ));
+                            case "Electricity - production:":
+                                energyBean.setElectricityProductionMillionskWh(energyRounderMillions(el.text()));
+                                break;
+                            case "Electricity - consumption:":
+                                energyBean.setElectricityConsumptionMillionskWh(energyRounderMillions(el.text()));
+                                break;
+                            case "Electricity - exports:":
+                                energyBean.setElectricityExportsMillionskWh(energyRounderMillions(el.text()));
+                                break;
+                            case "Electricity - imports:":
+                                energyBean.setElectricityImportsMillionskWh(energyRounderMillions(el.text()));
+                                break;
+                            case "Electricity - installed generating capacity:":
+                                energyBean.setElectricityCapacityThousandskW(energyRounderThounsands(el.text()));
+                                break;
+                            case "Electricity - from fossil fuels:":
+                                energyBean.setElectricityFossilFuelsPCT(createDouble( el.text().split("%")[0] ));
+                                break;
+                            case "Electricity - from nuclear fuels:":
+                                energyBean.setElectricityNuclearFuelsPCT(createDouble( el.text().split("%")[0] ));
+                                break;
+                            case "Electricity - from hydroelectric plants:":
+                                energyBean.setElectricityHydroelectricPlantsPCT(createDouble( el.text().split("%")[0] ));
+                                break;
+                            case "Electricity - from other renewable sources:":
+                                energyBean.setElectricityOtherRenewableSourcesPCT(createDouble( el.text().split("%")[0] ));
+                                break;
+                            case "Crude oil - production:":
+                                energyBean.setOilProductionBarrelsPerDay((int)processValue(el.text()));
+                                break;
+                            case "Crude oil - exports:":
+                                energyBean.setOilExportsBarrelsPerDay((int)processValue(el.text()));
+                                break;
+                            case "Crude oil - imports:":
+                                energyBean.setOilImportsBarrelsPerDay((int)processValue(el.text()));
+                                break;
+                            case "Crude oil - proved reserves:":
+                                energyBean.setOilProvedReservesThousandsBarrels(energyRounderThounsands(el.text()));
+                                break;
+                            case "Refined petroleum products - production:":
+                                energyBean.setRefinedPetroleumProductionBarrelsPerDay((int)processValue(el.text()));
+                                break;
+                            case "Refined petroleum products - consumption:":
+                                energyBean.setRefinedPetroleumConsumptionBarrelsPerDay((int)processValue(el.text()));
+                                break;
+                            case "Refined petroleum products - exports:":
+                                energyBean.setRefinedPetroleumExportsBarrelsPerDay((int)processValue(el.text()));
+                                break;
+                            case "Refined petroleum products - imports:":
+                                energyBean.setRefinedPetroleumImportsBarrelsPerDay((int)processValue(el.text()));
+                                break;
+                            case "Natural gas - production:":
+                                energyBean.setNaturalGasProductionMillionCubicMeters(energyRounderMillions(el.text()));
+                                break;
+                            case "Natural gas - consumption:":
+                                energyBean.setNaturalGasConsumptionMillionCubicMeters(energyRounderMillions(el.text()));
+                                break;
+                            case "Natural gas - exports:":
+                                energyBean.setNaturalGasExportsMillionCubicMeters(energyRounderMillions(el.text()));
+                                break;
+                            case "Natural gas - imports:":
+                                energyBean.setNaturalGasImportsMillionCubicMeters(energyRounderMillions(el.text()));
+                                break;
+                            case "Natural gas - proved reserves:":
+                                energyBean.setNaturalGasProvedReservesMillionCubicMeters(energyRounderMillions(el.text()));
+                                break;
+                            case "Carbon dioxide emissions from consumption of energy:":
+                                energyBean.setCarbonDioxideEmissionsThousandsMetricTons(energyRounderThounsands(el.text()));
+                                break;
+                            default:
+                                break;
+
+                        }
+
+                        break;
+
                     default:
                         ;
                 }
@@ -603,6 +694,7 @@ public class ParserMain {
         SocietyManager.insert(societyBean);
         GovernmentManager.insert(governmentBean);
         EconomyManager.insert(economyBean);
+        EnergyManager.insert(energyBean);
     }
 
     private static String singleCountryName(String tempName){
@@ -845,6 +937,59 @@ public class ParserMain {
         }
 
         return value;
+    }
+
+    private static int energyRounderMillions(String amount){
+        String[] ftamount = amount.split(" ");
+
+        double value = createDouble(ftamount[0]);
+        if(ftamount.length > 1){
+            switch (ftamount[1]){
+                case "million":
+                    value = Math.round(value);
+                    break;
+                case "billion":
+                    value = value * 1000;
+                    break;
+                case "trillion":
+                    value = value * 1000000;
+                    break;
+                default:
+                    if(value >= 1000){
+                        System.out.println("Energy Rounder Millions must parse amount in thousands!");
+                        value = value / 1000000;
+                    }
+
+                    break;
+            }
+        }
+
+        return (int)value;
+    }
+
+    private static int energyRounderThounsands(String amount){
+        String[] ftamount = amount.split(" ");
+
+        double value = createDouble(ftamount[0]);
+        if(ftamount.length > 1){
+            switch (ftamount[1]){
+                case "million":
+                    value = value * 1000;
+                    break;
+                case "billion":
+                    value = value * 1000000;
+                    break;
+                case "trillion":
+                    System.out.println("Energy Rounder Thousands must parse amount in trillions!");
+                    break;
+                default:
+                    if(value >= 1000)
+                        value = value / 1000;
+                    break;
+            }
+        }
+
+        return (int)value;
     }
 
     private static int formatPopulation(String people){

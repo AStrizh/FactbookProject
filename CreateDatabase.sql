@@ -178,7 +178,7 @@ CREATE TABLE `economy` (
 	`ForeignInvestmentAbroad` BIGINT,
 	`CurrencyText` VARCHAR(80),
 	`ExchangeRate` Decimal( 13, 5 )
-)
+);
 
 CREATE TABLE `energy` (
 	`Id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -197,9 +197,9 @@ CREATE TABLE `energy` (
 	`ElectricityHydroelectricPlantsPCT` DECIMAL( 4, 1 ),
 	`ElectricityOtherRenewableSourcesPCT` DECIMAL( 3, 1 ), 
 	`OilProductionBarrelsPerDay` INT,
-	`OilExportsBarrelsPerDay` Int,
+	`OilExportsBarrelsPerDay` INT,
 	`OilImportsBarrelsPerDay` INT,
-	`OilProvedReservesThousandBarrels` INT,	
+	`OilProvedReservesThousandsBarrels` INT,	
 	`RefinedPetroleumProductionBarrelsPerDay` INT,
 	`RefinedPetroleumConsumptionBarrelsPerDay` INT,
 	`RefinedPetroleumExportsBarrelsPerDay` INT,
@@ -209,7 +209,5 @@ CREATE TABLE `energy` (
 	`NaturalGasExportsMillionCubicMeters` INT,
 	`NaturalGasImportsMillionCubicMeters` INT,
 	`NaturalGasProvedReservesMillionCubicMeters` INT,
-	`CarbonDioxideEmissionsMillionMetricTons` INT
-)
-
-
+	`CarbonDioxideEmissionsThousandsMetricTons` INT
+);

@@ -16,9 +16,9 @@ public class EnergyManager {
                 "(countryCode, withoutElectricity, electrificationPopulationPCT, electrificationUrbanPCT, electrificationRuralPCT, " +
                 "electricityProductionMillionskWh, electricityConsumptionMillionskWh, electricityExportsMillionskWh, electricityImportsMillionskWh, electricityCapacityThousandskW, " +
                 "electricityFossilFuelsPCT, electricityNuclearFuelsPCT, electricityHydroelectricPlantsPCT, electricityOtherRenewableSourcesPCT, oilProductionBarrelsPerDay, " +
-                "oilExportsBarrelsPerDay, oilImportsBarrelsPerDay, oilProvedReservesThousandBarrels, refinedPetroleumProductionBarrelsPerDay, refinedPetroleumConsumptionBarrelsPerDay, " +
+                "oilExportsBarrelsPerDay, oilImportsBarrelsPerDay, oilProvedReservesThousandsBarrels, refinedPetroleumProductionBarrelsPerDay, refinedPetroleumConsumptionBarrelsPerDay, " +
                 "refinedPetroleumExportsBarrelsPerDay, refinedPetroleumImportsBarrelsPerDay, naturalGasProductionMillionCubicMeters, naturalGasConsumptionMillionCubicMeters,  naturalGasExportsMillionCubicMeters, " +
-                "naturalGasImportsMillionCubicMeters, naturalGasProvedReservesMillionCubicMeters, carbonDioxideEmissionsMillionMetricTons) " +
+                "naturalGasImportsMillionCubicMeters, naturalGasProvedReservesMillionCubicMeters, carbonDioxideEmissionsThousandsMetricTons) " +
 
                 "VALUES (?, ?, ?, ?, ?, " + "?, ?, ?, ?, ?, " + "?, ?, ?, ?, ?, " +
                 "?, ?, ?, ?, ?, " + "?, ?, ?, ?, ?, " + "?, ?, ?)";
@@ -47,7 +47,7 @@ public class EnergyManager {
             stmt.setInt(15, bean.getOilProductionBarrelsPerDay());
             stmt.setInt(16, bean.getOilExportsBarrelsPerDay());
             stmt.setInt(17, bean.getOilImportsBarrelsPerDay());
-            stmt.setInt(18, bean.getOilProvedReservesThousandBarrels());
+            stmt.setInt(18, bean.getOilProvedReservesThousandsBarrels());
             stmt.setInt(19, bean.getRefinedPetroleumProductionBarrelsPerDay());
             stmt.setInt(20, bean.getRefinedPetroleumConsumptionBarrelsPerDay());
             stmt.setInt(21, bean.getRefinedPetroleumExportsBarrelsPerDay());
@@ -57,7 +57,7 @@ public class EnergyManager {
             stmt.setInt(25, bean.getNaturalGasExportsMillionCubicMeters());
             stmt.setInt(26, bean.getNaturalGasImportsMillionCubicMeters());
             stmt.setInt(27, bean.getNaturalGasProvedReservesMillionCubicMeters());
-            stmt.setInt(28, bean.getCarbonDioxideEmissionsMillionMetricTons());
+            stmt.setInt(28, bean.getCarbonDioxideEmissionsThousandsMetricTons());
 
 
             if (stmt.executeUpdate() != 1) {
