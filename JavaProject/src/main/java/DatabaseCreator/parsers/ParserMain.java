@@ -26,6 +26,7 @@ public class ParserMain {
         Government governmentBean = new Government();
         Economy economyBean = new Economy();
         Energy energyBean = new Energy();
+        Communications communicationsBean = new Communications();
 
         Element previous = null;
         String countryCode = null;
@@ -675,6 +676,67 @@ public class ParserMain {
 
                         break;
 
+                    case "Communications":
+                        communicationsBean.setCountryCode(countryCode);
+
+                        switch (categoryTitle) {
+
+                            case "Telephones - fixed lines:":
+                                if(previous.text().equals("total subscriptions:"))
+                                    communicationsBean.setTotalFixedLines((int)processValue(el.text()));
+
+                                if(previous.text().equals("subscriptions per 100 inhabitants:"))
+                                    communicationsBean.setFixedLinesPer100(createInt(removeParentheses(el.text())));
+
+                                break;
+
+                            case "Telephones - mobile cellular:":
+                                if(previous.text().equals("total:"))
+                                    communicationsBean.setTotalCellular((int)processValue(el.text()));
+
+                                if(previous.text().equals("subscriptions per 100 inhabitants:"))
+                                    communicationsBean.setCellularPer100(createInt(removeParentheses(el.text())));
+
+                                break;
+
+                            case "Internet users:":
+                                if(previous.text().equals("total:"))
+                                    communicationsBean.setInternetUsers((int)processValue(el.text()));
+
+                                if(previous.text().equals("percent of population:"))
+                                    communicationsBean.setInternetUsersPCT(createDouble( el.text().split("%")[0] ));
+                                break;
+
+                                default:
+                                    ;
+                        }
+
+                        switch (previous.text()) {
+
+                            case "general assessment:":
+                                communicationsBean.setTelephoneGeneralAssessment(el.text());
+                                break;
+                            case "domestic:":
+                                communicationsBean.setTelephoneSystemDomestic(el.text());
+                                break;
+                            case "international:":
+                                communicationsBean.setTelephoneSystemInternational(el.text());
+                                break;
+                            case "Broadcast media:":
+                                communicationsBean.setBroadcastMedia(el.text());
+                                break;
+                            case "Internet country code:":
+                                if(countryCode.equals("FR"))
+                                    communicationsBean.setInternetCode(".fr");
+                                else
+                                    communicationsBean.setInternetCode(el.text().split(";")[0]);
+
+                            default:
+                                ;
+                        }
+
+
+
                     default:
                         ;
                 }
@@ -695,6 +757,7 @@ public class ParserMain {
         GovernmentManager.insert(governmentBean);
         EconomyManager.insert(economyBean);
         EnergyManager.insert(energyBean);
+        CommunicationsManager.insert(communicationsBean);
     }
 
     private static String singleCountryName(String tempName){
