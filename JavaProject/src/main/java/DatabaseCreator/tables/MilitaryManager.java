@@ -1,7 +1,6 @@
 package DatabaseCreator.tables;
 
 import DatabaseCreator.beans.Military;
-import DatabaseCreator.beans.Transportation;
 import DatabaseCreator.util.ConnectionManager;
 import DatabaseCreator.util.DBUtil;
 
@@ -9,8 +8,6 @@ import java.sql.*;
 public class MilitaryManager {
 
     private static Connection conn = ConnectionManager.getInstance().getConnection();
-
-
 
     public static boolean insert(Military bean) {
 

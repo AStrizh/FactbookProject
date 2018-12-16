@@ -29,6 +29,7 @@ public class ParserMain {
         Communications communicationsBean = new Communications();
         Transportation transportationBean = new Transportation();
         Military militaryBrean = new Military();
+        Transnational transnationalBean = new Transnational();
 
         Element previous = null;
         String countryCode = null;
@@ -38,6 +39,7 @@ public class ParserMain {
         String categoryTitle = "";
         String introduction = "";
         String econOverview = "";
+        String internationalDisputes = "";
 
         //Pulls data from relevant html tags
         for( Element el : classes){
@@ -736,6 +738,7 @@ public class ParserMain {
                             default:
                                 ;
                         }
+                        break;
 
                     case "Transportation":
                         transportationBean.setCountryCode(countryCode);
@@ -908,8 +911,9 @@ public class ParserMain {
 
                             default:
                                 ;
-
                         }
+                        break;
+
                     case "Military and Security":
                         militaryBrean.setCountryCode(countryCode);
 
@@ -927,6 +931,47 @@ public class ParserMain {
                             default:
                                 ;
                         }
+                        break;
+
+                    case "Transnational Issues":
+                        transnationalBean.setCountryCode(countryCode);
+
+                        switch (categoryTitle){
+
+                            case "Disputes - international:":
+                                internationalDisputes = internationalDisputes + el.text() + "\n";
+                                break;
+
+                            default:
+                                ;
+                        }
+
+                        switch (previous.text()){
+
+                            case "refugees (country of origin):":
+                                transnationalBean.setRefugees(el.text());
+                                break;
+                            case "IDPs:":
+                                transnationalBean.setIDPs(el.text());
+                                break;
+                            case "stateless persons:":
+                                transnationalBean.setStatelessPersons(el.text());
+                                break;
+                            case "current situation:":
+                                transnationalBean.setTraffickingSituation(el.text());
+                                break;
+                            case "tier rating:":
+                                transnationalBean.setTraffickingTierRating(el.text());
+                                break;
+                            case "Illicit drugs:":
+                                transnationalBean.setIllicitDrugs(el.text());
+                                break;
+
+                        }
+
+
+                        break;
+
 
 
 
@@ -943,6 +988,7 @@ public class ParserMain {
         countryBean.setRegion(region);
         countryBean.setIntroduction(introduction);
         economyBean.setOverview(econOverview);
+        transnationalBean.setDisputes(internationalDisputes);
 
         CountryMainManager.insert(countryBean);
         GeographyManager.insert(geoBean);
@@ -953,6 +999,7 @@ public class ParserMain {
         CommunicationsManager.insert(communicationsBean);
         TransportationManager.insert(transportationBean);
         MilitaryManager.insert(militaryBrean);
+        TransnationalManager.insert(transnationalBean);
     }
 
     private static String singleCountryName(String tempName){

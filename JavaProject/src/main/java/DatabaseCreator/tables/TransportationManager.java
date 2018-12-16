@@ -9,7 +9,6 @@ public class TransportationManager {
 
     private static Connection conn = ConnectionManager.getInstance().getConnection();
 
-
     public static boolean insert(Transportation bean) {
 
         String sql = "INSERT INTO Transportation " +

@@ -279,4 +279,16 @@ CREATE TABLE `military` (
 	`MilitaryExpenditure` DECIMAL( 4, 2 ),
 	`MilitaryObligation` Text,
 	`MilitaryBranches` Text
-)
+);
+
+CREATE TABLE `transnational` (
+	`Id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`CountryCode` CHAR(2),
+	`Disputes` Text,
+	`Refugees` Text,
+	`IDPs` Text,
+	`StatelessPersons` Text,
+	`TraffickingSituation` Text,
+	`TraffickingTierRating` Text,
+	`IllicitDrugs` Text
+);

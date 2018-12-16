@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c3fe19ef-2aa2-40ba-a46b-51dcb16a816b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/DatabaseCreator/beans/Transnational.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/TransnationalManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../CreateDatabase.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../CreateDatabase.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DatabaseCreator/beans/Military.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DatabaseCreator/beans/Military.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/DatabaseCreator/parsers/ParserMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DatabaseCreator/parsers/ParserMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/MilitaryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/MilitaryManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/TransportationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/TransportationManager.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -89,7 +92,7 @@
     <session id="-1657038414">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="26" />
+          <entry key="project.closed" value="27" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.10" value="3" />
           <entry key="project.open.time.11" value="1" />
@@ -112,8 +115,8 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="1" />
-          <entry key="JAVA" value="18295" />
-          <entry key="PLAIN_TEXT" value="1710" />
+          <entry key="JAVA" value="18737" />
+          <entry key="PLAIN_TEXT" value="1718" />
           <entry key="SQL" value="7" />
         </counts>
       </usages-collector>
@@ -121,7 +124,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Groovy" value="1" />
-          <entry key="JAVA" value="70" />
+          <entry key="JAVA" value="72" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -140,12 +143,62 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/parsers/ParserMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="918" column="110" selection-start-line="918" selection-start-column="110" selection-end-line="918" selection-end-column="110" />
+            <state relative-caret-position="88">
+              <caret line="967" column="38" selection-start-line="967" selection-start-column="38" selection-end-line="967" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#63445#63446#0" expanded="true" />
-                <element signature="e#63503#63504#0" expanded="true" />
+                <element signature="e#64752#64753#0" expanded="true" />
+                <element signature="e#64810#64811#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/beans/Transnational.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1232">
+              <caret line="56" column="45" selection-start-line="56" selection-start-column="45" selection-end-line="56" selection-end-column="45" />
+              <folding>
+                <element signature="e#513#514#0" expanded="true" />
+                <element signature="e#547#548#0" expanded="true" />
+                <element signature="e#601#602#0" expanded="true" />
+                <element signature="e#647#648#0" expanded="true" />
+                <element signature="e#682#683#0" expanded="true" />
+                <element signature="e#713#714#0" expanded="true" />
+                <element signature="e#761#762#0" expanded="true" />
+                <element signature="e#801#802#0" expanded="true" />
+                <element signature="e#836#837#0" expanded="true" />
+                <element signature="e#867#868#0" expanded="true" />
+                <element signature="e#915#916#0" expanded="true" />
+                <element signature="e#955#956#0" expanded="true" />
+                <element signature="e#986#987#0" expanded="true" />
+                <element signature="e#1013#1014#0" expanded="true" />
+                <element signature="e#1053#1054#0" expanded="true" />
+                <element signature="e#1085#1086#0" expanded="true" />
+                <element signature="e#1128#1129#0" expanded="true" />
+                <element signature="e#1167#1168#0" expanded="true" />
+                <element signature="e#1231#1232#0" expanded="true" />
+                <element signature="e#1287#1288#0" expanded="true" />
+                <element signature="e#1355#1356#0" expanded="true" />
+                <element signature="e#1539#1540#0" expanded="true" />
+                <element signature="e#1583#1584#0" expanded="true" />
+                <element signature="e#1896#1897#0" expanded="true" />
+                <element signature="e#1931#1932#0" expanded="true" />
+                <element signature="e#1987#1988#0" expanded="true" />
+                <element signature="e#2035#2036#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/TransnationalManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="82">
+              <caret line="16" column="79" lean-forward="true" selection-start-line="16" selection-start-column="79" selection-end-line="16" selection-end-column="79" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -154,8 +207,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/beans/Military.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+            <state relative-caret-position="176">
+              <caret line="8" column="8" selection-start-line="8" selection-end-line="8" selection-end-column="31" />
               <folding>
                 <element signature="e#365#366#0" expanded="true" />
                 <element signature="e#399#400#0" expanded="true" />
@@ -181,8 +234,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/MilitaryManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="610">
-              <caret line="37" column="34" lean-forward="true" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
+            <state relative-caret-position="214">
+              <caret line="16" column="38" lean-forward="true" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -207,8 +260,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/TransportationManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="588">
-              <caret line="80" lean-forward="true" selection-start-line="80" selection-end-line="80" />
+            <state relative-caret-position="616">
+              <caret line="28" column="13" lean-forward="true" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -219,8 +272,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/EnergyManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="15" column="19" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="29" />
+            <state relative-caret-position="506">
+              <caret line="23" column="55" selection-start-line="23" selection-start-column="53" selection-end-line="23" selection-end-column="67" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -652,9 +705,11 @@
         <option value="$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/CommunicationsManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/DatabaseCreator/beans/Communications.java" />
         <option value="$PROJECT_DIR$/src/main/java/DatabaseCreator/beans/Transportation.java" />
-        <option value="$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/TransportationManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/MilitaryManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/DatabaseCreator/beans/Military.java" />
+        <option value="$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/MilitaryManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/TransportationManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/DatabaseCreator/beans/Transnational.java" />
+        <option value="$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/TransnationalManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/DatabaseCreator/parsers/ParserMain.java" />
       </list>
     </option>
@@ -799,7 +854,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544949136788" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544958155100" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -896,7 +951,7 @@
       <workItem from="1544733882551" duration="9817000" />
       <workItem from="1544824213909" duration="15784000" />
       <workItem from="1544891284521" duration="8774000" />
-      <workItem from="1544936588267" duration="6241000" />
+      <workItem from="1544936588267" duration="9348000" />
     </task>
     <task id="LOCAL-00001" summary="Created JavaBeans to encapsulate database tables">
       <created>1540296120630</created>
@@ -1185,11 +1240,18 @@
       <option name="project" value="LOCAL" />
       <updated>1544948092507</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Finished Military table">
+      <created>1544949214931</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1544949214931</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="209835000" />
+    <option name="totallyTimeSpent" value="212942000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1202,7 +1264,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22974414" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1278,7 +1339,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="Created Border bean to handle country border data" />
     <MESSAGE value="Updated to parse borders" />
     <MESSAGE value="Removed unneeded code" />
     <MESSAGE value="Created BorderManager to insert Border data into SQL" />
@@ -1303,7 +1363,8 @@
     <MESSAGE value="Started Transportation table" />
     <MESSAGE value="Finished Transportation table" />
     <MESSAGE value="Started Military table" />
-    <option name="LAST_COMMIT_MESSAGE" value="Started Military table" />
+    <MESSAGE value="Finished Military table" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished Military table" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/build.gradle">
@@ -1476,16 +1537,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/EnergyManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" column="19" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/CommunicationsManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
@@ -1496,39 +1547,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/beans/Energy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="42" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/beans/Transportation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="940">
-          <caret line="219" column="34" selection-start-line="219" selection-start-column="34" selection-end-line="219" selection-end-column="34" />
-          <folding>
-            <element signature="e#5944#5945#0" expanded="true" />
-            <element signature="e#5994#5995#0" expanded="true" />
-            <element signature="e#6036#6037#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/TransportationManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="80" lean-forward="true" selection-start-line="80" selection-end-line="80" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/beans/Military.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+        <state relative-caret-position="176">
+          <caret line="8" column="8" selection-start-line="8" selection-end-line="8" selection-end-column="31" />
           <folding>
             <element signature="e#365#366#0" expanded="true" />
             <element signature="e#399#400#0" expanded="true" />
@@ -1552,8 +1574,93 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/MilitaryManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="37" column="34" lean-forward="true" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
+        <state relative-caret-position="214">
+          <caret line="16" column="38" lean-forward="true" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/beans/Transportation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="940">
+          <caret line="219" column="34" selection-start-line="219" selection-start-column="34" selection-end-line="219" selection-end-column="34" />
+          <folding>
+            <element signature="e#5944#5945#0" expanded="true" />
+            <element signature="e#5994#5995#0" expanded="true" />
+            <element signature="e#6036#6037#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/TransportationManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="28" column="13" lean-forward="true" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/beans/Energy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="42" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/EnergyManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="23" column="55" selection-start-line="23" selection-start-column="53" selection-end-line="23" selection-end-column="67" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/beans/Transnational.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1232">
+          <caret line="56" column="45" selection-start-line="56" selection-start-column="45" selection-end-line="56" selection-end-column="45" />
+          <folding>
+            <element signature="e#513#514#0" expanded="true" />
+            <element signature="e#547#548#0" expanded="true" />
+            <element signature="e#601#602#0" expanded="true" />
+            <element signature="e#647#648#0" expanded="true" />
+            <element signature="e#682#683#0" expanded="true" />
+            <element signature="e#713#714#0" expanded="true" />
+            <element signature="e#761#762#0" expanded="true" />
+            <element signature="e#801#802#0" expanded="true" />
+            <element signature="e#836#837#0" expanded="true" />
+            <element signature="e#867#868#0" expanded="true" />
+            <element signature="e#915#916#0" expanded="true" />
+            <element signature="e#955#956#0" expanded="true" />
+            <element signature="e#986#987#0" expanded="true" />
+            <element signature="e#1013#1014#0" expanded="true" />
+            <element signature="e#1053#1054#0" expanded="true" />
+            <element signature="e#1085#1086#0" expanded="true" />
+            <element signature="e#1128#1129#0" expanded="true" />
+            <element signature="e#1167#1168#0" expanded="true" />
+            <element signature="e#1231#1232#0" expanded="true" />
+            <element signature="e#1287#1288#0" expanded="true" />
+            <element signature="e#1355#1356#0" expanded="true" />
+            <element signature="e#1539#1540#0" expanded="true" />
+            <element signature="e#1583#1584#0" expanded="true" />
+            <element signature="e#1896#1897#0" expanded="true" />
+            <element signature="e#1931#1932#0" expanded="true" />
+            <element signature="e#1987#1988#0" expanded="true" />
+            <element signature="e#2035#2036#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/tables/TransnationalManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="82">
+          <caret line="16" column="79" lean-forward="true" selection-start-line="16" selection-start-column="79" selection-end-line="16" selection-end-column="79" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1562,12 +1669,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/DatabaseCreator/parsers/ParserMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="918" column="110" selection-start-line="918" selection-start-column="110" selection-end-line="918" selection-end-column="110" />
+        <state relative-caret-position="88">
+          <caret line="967" column="38" selection-start-line="967" selection-start-column="38" selection-end-line="967" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#63445#63446#0" expanded="true" />
-            <element signature="e#63503#63504#0" expanded="true" />
+            <element signature="e#64752#64753#0" expanded="true" />
+            <element signature="e#64810#64811#0" expanded="true" />
           </folding>
         </state>
       </provider>
