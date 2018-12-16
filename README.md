@@ -2,15 +2,12 @@
 Project to create an SQL database from CIA Factbook data
 
 As of last update: 
+The database now holds all intended data from the Factbook.
 
-Completed:  
-Main country data table, which contains country code, region, country name, and the CIA history introduction.  
-Major cities from the "Major urban areas - population" which falls under the "People and Society category."  
-Border data  
-Geography data  
+Some informational text was not included but the vast majority of statistically relevant
+data was transfered over.
 
-In Process:  
-People and Society data - mostly completed
+The project is now, for the most part, complete. Some changes may be made to better organize and structure the code in the future.
 
 ## Process
 
