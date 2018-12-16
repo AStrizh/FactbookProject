@@ -229,11 +229,13 @@ CREATE TABLE `communications` (
 );
 
 CREATE TABLE `transportation` (
+	`Id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`CountryCode` CHAR(2),
 	`RegisteredAirCarriers` INT,
 	`AirCarriersAircraft` INT,
 	`AirCarrierPassengers` INT,
 	`AirCarrierFreight` BIGINT,
-	`CivilAircraftCode` VARCHAR(5),
+	`CivilAircraftCode` VARCHAR(6),
 	`TotalAirports` INT,
 	`PavedRunways` INT,
 	`PavedOver3047m` INT,
@@ -259,7 +261,7 @@ CREATE TABLE `transportation` (
 	`UnpavedRoadwaysKM` INT,
 	`WaterwaysKM` INT,
 	`MerchantMarine` INT,
-	`MerchantMarineType` VARCHAR(200),
+	`MerchantMarineType` TEXT,
 	`ForeignOwned` TEXT,
 	`RegisteredInternationally` TEXT, 
 	`MajorSeaport` VARCHAR(200),

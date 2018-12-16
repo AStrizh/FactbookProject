@@ -20,7 +20,7 @@ public class TransportationManager {
                 "pipelines, totalRailwayKM, broadGaugeKM, standardGaugeKM, narrowGaugeKM, " +
                 "dualGaugeKM, totalRoadwaysKM, pavedRoadwaysKM, unpavedRoadwaysKM, waterwaysKM, " +
                 "merchantMarine, merchantMarineType, foreignOwned, registeredInternationally, majorSeaport, " +
-                "riverPort, oilTerminal, dryCargoPort, containerPort, lNGTerminal, cruisePort, " +
+                "riverPort, oilTerminal, dryCargoPort, containerPort, lNGTerminal, cruisePort) " +
 
                 "VALUES (?, ?, ?, ?, ?, " + "?, ?, ?, ?, ?, " + "?, ?, ?, ?, ?, " +
                 "?, ?, ?, ?, ?, " + "?, ?, ?, ?, ?, " + "?, ?, ?, ?, ?, " +
@@ -32,12 +32,11 @@ public class TransportationManager {
         ) {
 
             stmt.setString(1, bean.getCountryCode());
-            stmt.setString(1, bean.getCountryCode());
             stmt.setInt(2, bean.getRegisteredAirCarriers());
             stmt.setInt(3, bean.getAirCarriersAircraft());
             stmt.setInt(4, bean.getAirCarrierPassengers());
             stmt.setLong(5, bean.getAirCarrierFreight());
-            stmt.setInt(6, bean.getCivilAircraftCode());
+            stmt.setString(6, bean.getCivilAircraftCode());
             stmt.setInt(7, bean.getTotalAirports());
             stmt.setInt(8, bean.getPavedRunways());
             stmt.setInt(9, bean.getPavedOver3047m());
@@ -52,7 +51,7 @@ public class TransportationManager {
             stmt.setInt(18, bean.getUnpavedBetween914TO1523m());
             stmt.setInt(19, bean.getUnpavedUnder914m());
             stmt.setInt(20, bean.getHeliports());
-            stmt.setInt(21, bean.getPipelines());
+            stmt.setString(21, bean.getPipelines());
             stmt.setInt(22, bean.getTotalRailwayKM());
             stmt.setInt(23, bean.getBroadGaugeKM());
             stmt.setInt(24, bean.getStandardGaugeKM());

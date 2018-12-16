@@ -12,7 +12,7 @@ public class Transportation implements Serializable  {
     private int airCarriersAircraft;
     private int airCarrierPassengers;
     private long airCarrierFreight;
-    private int civilAircraftCode;
+    private String civilAircraftCode;
     private int totalAirports;
     private int pavedRunways;
     private int pavedOver3047m;
@@ -27,7 +27,7 @@ public class Transportation implements Serializable  {
     private int unpavedBetween914TO1523m;
     private int unpavedUnder914m;
     private int heliports;
-    private int pipelines;
+    private String pipelines;
     private int totalRailwayKM;
     private int broadGaugeKM;
     private int standardGaugeKM;
@@ -97,11 +97,11 @@ public class Transportation implements Serializable  {
         this.airCarrierFreight = airCarrierFreight;
     }
 
-    public int getCivilAircraftCode() {
+    public String getCivilAircraftCode() {
         return civilAircraftCode;
     }
 
-    public void setCivilAircraftCode(int civilAircraftCode) {
+    public void setCivilAircraftCode(String civilAircraftCode) {
         this.civilAircraftCode = civilAircraftCode;
     }
 
@@ -217,11 +217,11 @@ public class Transportation implements Serializable  {
         this.heliports = heliports;
     }
 
-    public int getPipelines() {
+    public String getPipelines() {
         return pipelines;
     }
 
-    public void setPipelines(int pipelines) {
+    public void setPipelines(String pipelines) {
         this.pipelines = pipelines;
     }
 

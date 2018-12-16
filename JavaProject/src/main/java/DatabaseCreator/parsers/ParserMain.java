@@ -27,6 +27,7 @@ public class ParserMain {
         Economy economyBean = new Economy();
         Energy energyBean = new Energy();
         Communications communicationsBean = new Communications();
+        Transportation transportationBean = new Transportation();
 
         Element previous = null;
         String countryCode = null;
@@ -735,6 +736,180 @@ public class ParserMain {
                                 ;
                         }
 
+                    case "Transportation":
+                        transportationBean.setCountryCode(countryCode);
+
+                        switch (categoryTitle) {
+
+                            case "Airports - with paved runways:":
+
+                                switch (previous.text()){
+                                    case "total:":
+                                        transportationBean.setPavedRunways(createInt(el.text()));
+                                        break;
+                                    case "over 3,047 m:":
+                                        transportationBean.setPavedOver3047m(createInt(el.text()));
+                                        break;
+                                    case "2,438 to 3,047 m:":
+                                        transportationBean.setPavedBetween2438TO3047m(createInt(el.text()));
+                                        break;
+                                    case "1,524 to 2,437 m:":
+                                        transportationBean.setPavedBetween1524TO2437m(createInt(el.text()));
+                                        break;
+                                    case "914 to 1,523 m:":
+                                        transportationBean.setPavedBetween914TO1523m(createInt(el.text()));
+                                        break;
+                                    case "under 914 m:":
+                                        transportationBean.setPavedUnder914m(createInt(removeParentheses(el.text())));
+                                        break;
+
+                                    default:
+                                        ;
+                                }
+
+                            case "Airports - with unpaved runways:":
+
+                                switch (previous.text()){
+                                    case "total:":
+                                        transportationBean.setUnpavedRunways(createInt(el.text()));
+                                        break;
+                                    case "over 3,047 m:":
+                                        transportationBean.setUnpavedOver3047m(createInt(el.text()));
+                                        break;
+                                    case "2,438 to 3,047 m:":
+                                        transportationBean.setUnpavedBetween2438TO3047m(createInt(el.text()));
+                                        break;
+                                    case "1,524 to 2,437 m:":
+                                        transportationBean.setUnpavedBetween1524TO2437m(createInt(el.text()));
+                                        break;
+                                    case "914 to 1,523 m:":
+                                        transportationBean.setUnpavedBetween914TO1523m(createInt(el.text()));
+                                        break;
+                                    case "under 914 m:":
+                                        transportationBean.setUnpavedUnder914m(createInt(removeParentheses(el.text())));
+                                        break;
+
+                                    default:
+                                        ;
+                                }
+
+                            case "Railways:":
+                                switch (previous.text()) {
+                                    case "total:":
+                                        transportationBean.setTotalRailwayKM(createInt(el.text().split(" ")[0]));
+                                        break;
+                                    case "broad gauge:":
+                                        transportationBean.setBroadGaugeKM(createInt(el.text().split(" ")[0]));
+                                        break;
+                                    case "standard gauge:":
+                                        transportationBean.setStandardGaugeKM(createInt(el.text().split(" ")[0]));
+                                        break;
+                                    case "dual gauge:":
+                                        transportationBean.setDualGaugeKM(createInt(el.text().split(" ")[0]));
+                                        break;
+                                    case "narrow gauge:":
+                                        transportationBean.setNarrowGaugeKM(createInt(el.text().split(" ")[0]));
+                                        break;
+
+                                    default:
+                                        ;
+                                }
+                                break;
+
+                            case "Roadways:":
+                                switch (previous.text()) {
+                                    case "total:":
+                                        transportationBean.setTotalRoadwaysKM(createInt(el.text().split(" ")[0]));
+                                        break;
+                                    case "paved:":
+                                        transportationBean.setPavedRoadwaysKM(createInt(el.text().split(" ")[0]));
+                                        break;
+                                    case "unpaved:":
+                                        transportationBean.setUnpavedRoadwaysKM(createInt(el.text().split(" ")[0]));
+                                        break;
+
+                                    default:
+                                        ;
+                                }
+
+                            case "Merchant marine:":
+                                switch (previous.text()) {
+                                    case "total:":
+                                        transportationBean.setMerchantMarine(createInt(el.text()));
+                                        break;
+                                    case "by type:":
+                                        transportationBean.setMerchantMarineType(removeParentheses(el.text()));
+                                        break;
+                                    case "foreign-owned:":
+                                        transportationBean.setForeignOwned(el.text());
+                                        break;
+                                    case "registered in other countries:":
+                                        transportationBean.setRegisteredInternationally(el.text());
+                                        break;
+                                }
+
+                            default:
+                                ;
+                        }
+
+
+                        switch (previous.text()) {
+
+                            case "number of registered air carriers:":
+                                transportationBean.setRegisteredAirCarriers(createInt(el.text()));
+                                break;
+                            case "inventory of registered aircraft operated by air carriers:":
+                                transportationBean.setAirCarriersAircraft(createInt(el.text()));
+                                break;
+                            case "annual passenger traffic on registered air carriers:":
+                                transportationBean.setAirCarrierPassengers((int)processValue(el.text()));
+                                break;
+                            case "annual freight traffic on registered air carriers:":
+                                transportationBean.setAirCarrierFreight((long)processValue(el.text()));
+                                break;
+                            case "Civil aircraft registration country code prefix:":
+                                transportationBean.setCivilAircraftCode(removeParentheses(el.text()));
+                                break;
+                            case "Airports:":
+                                transportationBean.setTotalAirports(createInt(removeParentheses(el.text())));
+                                break;
+                            case "Heliports:":
+                                transportationBean.setHeliports(createInt(removeParentheses(el.text())));
+                                break;
+                            case "Pipelines:":
+                                transportationBean.setPipelines(removeParentheses(el.text()));
+                                break;
+                            case "Waterways:":
+                                transportationBean.setWaterwaysKM(createInt(el.text().split(" ")[0]));
+                                break;
+                            case "major seaport(s):":
+                                transportationBean.setMajorSeaport(el.text());
+                                break;
+                            case "river port(s):":
+                                transportationBean.setRiverPort(el.text());
+                                break;
+                            case "oil terminal(s):":
+                                transportationBean.setOilTerminal(el.text());
+                                break;
+                            case "container port(s) (TEUs):":
+                                transportationBean.setContainerPort(el.text());
+                                break;
+                            case "dry bulk cargo port(s):":
+                                transportationBean.setDryCargoPort(el.text());
+                                break;
+                            case "LNG terminal(s) (export):":
+                                transportationBean.setLNGTerminal(el.text());
+                                break;
+                            case "cruise port(s):":
+                                transportationBean.setCruisePort(el.text());
+                                break;
+
+
+                            default:
+                                ;
+
+                        }
+
 
 
                     default:
@@ -758,6 +933,7 @@ public class ParserMain {
         EconomyManager.insert(economyBean);
         EnergyManager.insert(energyBean);
         CommunicationsManager.insert(communicationsBean);
+        TransportationManager.insert(transportationBean);
     }
 
     private static String singleCountryName(String tempName){
