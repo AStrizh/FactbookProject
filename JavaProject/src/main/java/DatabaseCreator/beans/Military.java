@@ -6,10 +6,10 @@ public class Military implements Serializable {
 
     private static final long serialVersionUID = -5725531134591346614L;
 
-    public String countryCode;
-    public double militaryExpenditure;
-    public String militaryObligation;
-    public String militaryBranches;
+    private String countryCode;
+    private double militaryExpenditure;
+    private String militaryObligation;
+    private String militaryBranches;
 
     public String getCountryCode() {
         return countryCode;

@@ -28,6 +28,7 @@ public class ParserMain {
         Energy energyBean = new Energy();
         Communications communicationsBean = new Communications();
         Transportation transportationBean = new Transportation();
+        Military militaryBrean = new Military();
 
         Element previous = null;
         String countryCode = null;
@@ -909,6 +910,23 @@ public class ParserMain {
                                 ;
 
                         }
+                    case "Military and Security":
+                        militaryBrean.setCountryCode(countryCode);
+
+                        switch (previous.text()) {
+
+                            case "Military expenditures:":
+                                militaryBrean.setMilitaryExpenditure(createDouble( el.text().split("%")[0] ));
+                                break;
+                            case "Military branches:":
+                                militaryBrean.setMilitaryBranches(el.text());
+                                break;
+                            case "Military service age and obligation:":
+                                militaryBrean.setMilitaryObligation(el.text());
+                                break;
+                            default:
+                                ;
+                        }
 
 
 
@@ -934,6 +952,7 @@ public class ParserMain {
         EnergyManager.insert(energyBean);
         CommunicationsManager.insert(communicationsBean);
         TransportationManager.insert(transportationBean);
+        MilitaryManager.insert(militaryBrean);
     }
 
     private static String singleCountryName(String tempName){

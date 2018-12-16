@@ -272,3 +272,11 @@ CREATE TABLE `transportation` (
 	`LNGTerminal` VARCHAR(200),
 	`CruisePort` VARCHAR(200)
 );
+
+CREATE TABLE `military` (
+	`Id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`CountryCode` CHAR(2),
+	`MilitaryExpenditure` DECIMAL( 4, 2 ),
+	`MilitaryObligation` Text,
+	`MilitaryBranches` Text
+)
