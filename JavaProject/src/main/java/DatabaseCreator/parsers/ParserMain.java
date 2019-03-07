@@ -76,6 +76,7 @@ public class ParserMain {
                 switch(sectionTitle){
                     case "Introduction":
                         introduction = introduction + el.text() + "\n";
+                        //introduction = (introduction + el.text() + "<br>");
                         break;
                     case "Geography":
                         geoBean.setCountryCode(countryCode);
@@ -147,6 +148,13 @@ public class ParserMain {
                         }
 
                         switch (categoryTitle){
+
+                            case "Median age:":
+                                if (previous.text().equals("male:"))
+                                    societyBean.setMedianAgeMale(createDouble(el.text().split(" ")[0]));
+                                else if (previous.text().equals("female:"))
+                                    societyBean.setMedianAgeFemale(createDouble(el.text().split(" ")[0]));
+                                break;
                             case "Infant mortality rate:":
                                 if (previous.text().equals("male:"))
                                     societyBean.setInfantMaleMortalityRatePer1K(createDouble(el.text().split(" ")[0]));
@@ -226,6 +234,19 @@ public class ParserMain {
                                     societyBean.setFemale65(stats[1]);
                                 }
                                 break;
+
+                            case "youth dependency ratio:":
+                                societyBean.setYouthDependencyRatio(createDouble( el.text() ));
+                                break;
+
+                            case "elderly dependency ratio:":
+                                societyBean.setElderlyDependencyRatio(createDouble( el.text() ));
+                                break;
+
+                            case "potential support ratio:":
+                                societyBean.setPotentialSupportRatio(createDouble( el.text().split(" ")[0] ));
+                                break;
+
                             case "Population growth rate:":
                                 societyBean.setPopulationGrowthRate( createDouble(
                                         el.text().split(" ")[0].replace("%","")
